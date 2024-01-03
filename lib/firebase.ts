@@ -1,11 +1,13 @@
 import admin from "firebase-admin";
-import { cert } from "firebase-admin/app";
+import { applicationDefault } from "firebase-admin/app";
 import { getFirestore } from "firebase-admin/firestore";
 
-const serviceAccount = require("@/serviceAccountKey.json");
+const firebaseServiceAccount = Object(
+  process.env.FIREBASE_SERVICE_ACCOUNT_NICOANIMEANALYTICS
+);
 if (admin.apps.length === 0) {
   admin.initializeApp({
-    credential: cert(serviceAccount),
+    credential: applicationDefault(),
   });
 }
 
