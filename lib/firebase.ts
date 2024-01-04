@@ -7,6 +7,7 @@ const firebaseServiceAccount = Object(
 );
 if (admin.apps.length === 0) {
   admin.initializeApp({
+    projectId: "nicoanimeanalytics",
     credential: applicationDefault(),
   });
 }
