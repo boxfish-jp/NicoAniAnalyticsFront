@@ -1,16 +1,30 @@
-// Header/index.tsx
-import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import MobileNav from "./mobileNav";
+import Link from "./link";
+import headerNavLinks from "@/data/headerNavLinks";
 
-export const Header = () => {
+export default function Header() {
   return (
-    <div className="fixed flex justify-between px-8 w-screen h-16 bg-teal-400 items-center drop-shadow-2xl border-b border-gray-300 shadow-md">
-      <h1 className="font-bold text-2xl">shadcn-ui TUTORIAL</h1>
-      <div className="flex gap-3">
-        <Button variant="outline">
-          <a href="https://ui.shadcn.com/docs">公式 Document</a>
-        </Button>
-        <Button>menu</Button>
+    <header className="sticky top-0 z-50 w-full bg-gradient-to-b from-black py-6">
+      <div className="container mx-auto  pb-1 text-white">
+        <div className="mx-7 flex items-center justify-between">
+          <Link className="flex items-center gap-3" href="/">
+            <p className="text-2xl font-semibold">ニコニコアニメトラッカー</p>
+          </Link>
+          <div className="hidden md:block">
+            <div className="flex gap-8">
+              {headerNavLinks
+                .filter((link) => link.href !== "/")
+                .map((link) => (
+                  <Link key={link.title} href={link.href} className="text-xl">
+                    {link.title}
+                  </Link>
+                ))}
+            </div>
+          </div>
+          <MobileNav />
+        </div>
       </div>
-    </div>
+    </header>
   );
-};
+}
