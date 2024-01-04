@@ -1,14 +1,29 @@
 import Image from "next/image";
 import { db } from "@/lib/firebase";
+import { Button } from "@/components/ui/button";
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 const Home = async () => {
   const display = await datafetch();
-  return <h1>{display}</h1>;
+  return (
+    <>
+      <Button>これはボタン</Button>
+      <h1>{display}</h1>
+    </>
+  );
 };
 
 const datafetch = async () => {
   const getSeason = (
-    await db.collection("dbConfig").doc("NowSeason").get()
+    await db.collection("dbConfig").doc("nowSeason").get()
   ).data();
   const nowSeason = String(getSeason?.data);
 
