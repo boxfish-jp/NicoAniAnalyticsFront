@@ -8,7 +8,7 @@ import CustomLink from "@/components/link";
 const Main = async () => {
   //const [WhichOrder, setWhichOrder] = useState("aveViewers");
 
-  const dbChannels = await queryRanking("aveViewers");
+  const dbChannels = await queryRanking("aveComments");
 
   return (
     <div className="w-full">
@@ -18,7 +18,7 @@ const Main = async () => {
           id="main"
         >
           <h1 className="text-center text-3xl mt-20">
-            今季のアニメ平均再生数ランキング
+            今季アニメの平均コメント数ランキング
           </h1>
           <section className="flex flex-row gap-3 md:gap-12 mx-auto">
             <CustomLink href="/">

@@ -38,7 +38,7 @@ const Ranking = ({ channels }: { channels: dbChannelType[] }) => {
               <p className="col-span-full xl:col-span-2">{channel.detail}</p>
             </CardContent>
             <CardFooter>
-              <a className="flex" href={channel.chUrl}>
+              <a className="flex flex-col md:flex-row" href={channel.chUrl}>
                 <p>チャンネルページ :&nbsp;</p>
                 <p className="underline text-blue-400">{channel.chUrl}</p>
               </a>
