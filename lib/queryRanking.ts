@@ -1,16 +1,23 @@
 import { db } from "./firebase";
 import dbChannelType from "../types/dbChannelType";
+import rankingCardSize from "@/data/rankingCardSize";
 
 export const revalidate = 60 * 60 * 12; // 24時間
-const queryRanking = async (order: string) => {
+const queryRanking = async (order: string, offset: number) => {
+  ("use server");
   const getSeason = await db.collection("dbConfig").doc("nowSeason").get();
   const season = getSeason.data()?.data;
+  const numCh = getSeason.data()?.numCh;
   const seasonChList = `${season}-ChList`;
+  const limitNum =
+    rankingCardSize + offset > Number(numCh)
+      ? Number(numCh)
+      : rankingCardSize + offset;
 
   const getRanking = await db
     .collection(seasonChList)
     .orderBy(order, "desc")
-    .limit(10)
+    .limit(limitNum)
     .get();
 
   const dbChannels: dbChannelType[] = [];
@@ -25,7 +32,7 @@ const queryRanking = async (order: string) => {
       title: doc.data().title,
     });
   });
-  return dbChannels;
+  return dbChannels.slice(offset);
 };
 
 export default queryRanking;

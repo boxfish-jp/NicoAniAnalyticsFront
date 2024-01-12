@@ -8,7 +8,13 @@ import {
 } from "@/components/ui/card";
 import dbChannelType from "@/types/dbChannelType";
 
-const Ranking = ({ channels }: { channels: dbChannelType[] }) => {
+const Ranking = ({
+  channels,
+  offset,
+}: {
+  channels: dbChannelType[];
+  offset: number;
+}) => {
   return (
     <div className="flex flex-col gap-5">
       {channels.map((channel, index) => (
@@ -17,7 +23,7 @@ const Ranking = ({ channels }: { channels: dbChannelType[] }) => {
             <CardHeader>
               <div className="flex flex-row">
                 <h1 className="bg-black text-white space-y-1.5 font-medium text-xl text-center h-10 leading-10 w-10 rounded-full">
-                  {index + 1}
+                  {Number(index) + offset + 1}
                 </h1>
                 <CardTitle className="leading-10 mx-4">
                   {channel.title}

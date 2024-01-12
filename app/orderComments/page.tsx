@@ -1,11 +1,27 @@
 import Header from "@/components/header";
-import Main from "./main";
+import RankingSection from "../rankingSect";
 
-const Home = async () => {
+const Home = (props: { params: {}; searchParams: { offset?: number } }) => {
+  const offset = Number(props.searchParams.offset) || 0;
   return (
     <div className="">
       <Header />
-      <Main />
+      <div className="w-full">
+        <div className="grid grid-cols-12 sm:gap-8">
+          <main
+            className="col-span-full md:col-span-10 md:col-start-2 lg:col-span-8 lg:col-start-3 flex flex-col gap-12"
+            id="main"
+          >
+            <RankingSection
+              pageType={{
+                name: "コメント数",
+                query: "aveComments",
+                offset: offset,
+              }}
+            />
+          </main>
+        </div>
+      </div>
     </div>
   );
 };

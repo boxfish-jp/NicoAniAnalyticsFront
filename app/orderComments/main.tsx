@@ -9,7 +9,7 @@ const Main = () => (
         id="main"
       >
         <RankingSection
-          pageType={{ name: "コメント数", query: "aveComments" }}
+          pageType={{ name: "コメント数", query: "aveComments", offset: 0 }}
         />
       </main>
     </div>
