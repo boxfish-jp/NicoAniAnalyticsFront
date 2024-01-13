@@ -1,14 +1,17 @@
-import admin from "firebase-admin";
-import { applicationDefault } from "firebase-admin/app";
+import { initializeApp, cert, getApps } from "firebase-admin/app";
+//import { applicationDefault } from "firebase-admin/app";
 import { getFirestore } from "firebase-admin/firestore";
 
 const firebaseServiceAccount = Object(
   process.env.FIREBASE_SERVICE_ACCOUNT_NICOANIMEANALYTICS
 );
-if (admin.apps.length === 0) {
-  admin.initializeApp({
+if (!getApps().length) {
+  initializeApp({
     projectId: "nicoanimeanalytics",
-    credential: applicationDefault(),
+    credential: cert(
+      // 環境変数から認証情報を取得
+      JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY as string)
+    ),
   });
 }
 
