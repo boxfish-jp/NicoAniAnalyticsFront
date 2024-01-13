@@ -4,7 +4,6 @@ import rankingCardSize from "@/data/rankingCardSize";
 
 export const revalidate = 60 * 60 * 12; // 24時間
 const queryRanking = async (order: string, offset: number) => {
-  ("use server");
   const getSeason = await db.collection("dbConfig").doc("nowSeason").get();
   const season = getSeason.data()?.data;
   const numCh = getSeason.data()?.numCh;
