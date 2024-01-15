@@ -9,7 +9,7 @@ const Home = (props: { params: {}; searchParams: { offset?: number } }) => {
       <div className="w-full">
         <div className="grid grid-cols-12 sm:gap-8">
           <main
-            className="col-span-full md:col-span-10 md:col-start-2 lg:col-span-8 lg:col-start-3 flex flex-col gap-12"
+            className="col-span-full md:col-span-10 md:col-start-2 lg:col-span-8 lg:col-start-3 flex flex-col gap-12 mb-10"
             id="main"
           >
             <RankingSection

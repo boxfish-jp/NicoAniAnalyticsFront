@@ -2,13 +2,16 @@ import Ranking from "@/components/ranking";
 import ButtonLists from "@/components/buttonLists";
 import queryRanking from "@/lib/queryRanking";
 import CustomLink from "@/components/link";
+import RankingPagination from "./rankingPagination";
 
 const RankingSection = async ({
   pageType,
 }: {
   pageType: { name: string; query: string; offset: number };
 }) => {
-  const dbChannels = await queryRanking(pageType.query, pageType.offset);
+  const queryChannels = await queryRanking(pageType.query, pageType.offset);
+  const dbChannels = queryChannels.channels;
+  const numCh = queryChannels.numCh;
   const previouseOffset = pageType.offset - 10 > 0 ? pageType.offset - 10 : 0;
   const nextOffset = pageType.offset + 10;
   return (
@@ -27,17 +30,12 @@ const RankingSection = async ({
           { href: "/orderComments", name: "コメント数順" },
         ]}
       />
-
       <Ranking channels={dbChannels} offset={pageType.offset} />
-
-      <div className="flex gap-20 mx-auto">
-        <CustomLink href={"/?offset=" + previouseOffset}>
-          <p>前へ</p>
-        </CustomLink>
-        <CustomLink href={"/?offset=" + nextOffset}>
-          <p>次へ</p>
-        </CustomLink>
-      </div>
+      <RankingPagination
+        previouseOffset={previouseOffset}
+        nextOffset={nextOffset}
+        numCh={numCh}
+      />
     </>
   );
 };

@@ -31,7 +31,7 @@ const queryRanking = async (order: string, offset: number) => {
       title: doc.data().title,
     });
   });
-  return dbChannels.slice(offset);
+  return { numCh: numCh, channels: dbChannels.slice(offset) };
 };
 
 export default queryRanking;
