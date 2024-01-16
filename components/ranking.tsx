@@ -34,13 +34,13 @@ const Ranking = ({
             />
           </CardContent>
           <CardHeader className="col-span-6 p-3 sm:p-6">
-            <div className="flex flex-row">
+            <div className="flex flex-row items-center">
               <div className="bg-black   text-center h-11 leading-10 p-2 w-11 rounded-full">
                 <h1 className="text-white font-medium text-xl">
                   {Number(index) + offset + 1}
                 </h1>
               </div>
-              <CardTitle className="text-lg break-words lg:text-xl leading-10 mx-4">
+              <CardTitle className="text-lg break-words lg:text-xl leading-11 mx-4 mb-1">
                 {channel.title.length > 25
                   ? channel.title.substring(0, 25) + "..."
                   : channel.title}
