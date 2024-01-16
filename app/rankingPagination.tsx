@@ -10,18 +10,31 @@ import {
 import rankingCardSize from "@/data/rankingCardSize";
 
 const RankingPagination = ({
+  type,
   previouseOffset,
   nextOffset,
   numCh,
 }: {
+  type: string;
   previouseOffset: number;
   nextOffset: number;
   numCh: number;
 }) => {
+  let pagetype = "";
+  switch (type) {
+    case "再生数":
+      break;
+    case "マイリスト":
+      pagetype = "/orderMylists";
+      break;
+    case "コメント数":
+      pagetype = "/orderComments";
+      break;
+  }
   return (
     <Pagination>
       {previouseOffset != 0 && (
-        <PaginationPrevious href={"/?offset=" + previouseOffset} />
+        <PaginationPrevious href={pagetype + "/?offset=" + previouseOffset} />
       )}
       <PaginationContent>
         {Array.from(
@@ -30,14 +43,16 @@ const RankingPagination = ({
         ).map((i) => (
           <PaginationLink
             key={i}
-            href={"/?offset=" + i * 10}
+            href={pagetype + "/?offset=" + i * rankingCardSize}
             isActive={nextOffset / rankingCardSize == i + 1}
           >
             {i + 1}
           </PaginationLink>
         ))}
       </PaginationContent>
-      {numCh > nextOffset && <PaginationNext href={"/?offset=" + nextOffset} />}
+      {numCh > nextOffset && (
+        <PaginationNext href={pagetype + "/?offset=" + nextOffset} />
+      )}
     </Pagination>
   );
 };

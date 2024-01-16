@@ -1,2 +1,2 @@
-const rankingCardSize: number = 20;
+const rankingCardSize: number = 10;
 export default rankingCardSize;

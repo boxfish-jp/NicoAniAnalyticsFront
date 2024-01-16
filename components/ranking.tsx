@@ -10,9 +10,11 @@ import dbChannelType from "@/types/dbChannelType";
 import Image from "next/image";
 
 const Ranking = ({
+  type,
   channels,
   offset,
 }: {
+  type: string;
   channels: dbChannelType[];
   offset: number;
 }) => {
@@ -44,12 +46,7 @@ const Ranking = ({
                   : channel.title}
               </CardTitle>
             </div>
-
-            <CardDescription>
-              再生数: {channel.aveViewers}　コメント数: {channel.aveComments}
-              　マイリスト数:
-              {channel.aveMylists}
-            </CardDescription>
+            <Description type={type} channel={channel} />
             <a
               href={channel.chUrl}
               target="_blank"
@@ -60,14 +57,77 @@ const Ranking = ({
             </a>
           </CardHeader>
 
-          <div className="col-span-2 flex items-end gap-1">
-            <p className="text-xl">{channel.aveViewers}</p>
-            <p className=" text-gray-600 text-sm">再生</p>
-          </div>
+          <Footer type={type} channel={channel} />
         </Card>
       ))}
     </div>
   );
+};
+
+const Description = ({
+  type,
+  channel,
+}: {
+  type: string;
+  channel: dbChannelType;
+}) => {
+  switch (type) {
+    case "再生数":
+      return (
+        <CardDescription>
+          コメント数: {channel.aveComments}
+          　マイリスト数:
+          {channel.aveMylists}
+        </CardDescription>
+      );
+    case "コメント数":
+      return (
+        <CardDescription>
+          再生数: {channel.aveViewers}
+          　マイリスト数:
+          {channel.aveMylists}
+        </CardDescription>
+      );
+    case "マイリスト数":
+      return (
+        <CardDescription>
+          再生数: {channel.aveViewers}
+          　コメント数: {channel.aveComments}
+        </CardDescription>
+      );
+  }
+};
+
+const Footer = ({
+  type,
+  channel,
+}: {
+  type: string;
+  channel: dbChannelType;
+}) => {
+  switch (type) {
+    case "再生数":
+      return (
+        <div className="col-span-2 flex items-end gap-1">
+          <p className="text-xl">{channel.aveViewers}</p>
+          <p className=" text-gray-600 text-sm">再生</p>
+        </div>
+      );
+    case "コメント数":
+      return (
+        <div className="col-span-2 flex items-end gap-1">
+          <p className="text-xl">{channel.aveComments}</p>
+          <p className=" text-gray-600 text-sm">コメ</p>
+        </div>
+      );
+    case "マイリスト数":
+      return (
+        <div className="col-span-2 flex items-end gap-1">
+          <p className="text-xl">{channel.aveMylists}</p>
+          <p className=" text-gray-600 text-sm">マイリス</p>
+        </div>
+      );
+  }
 };
 
 export default Ranking;
