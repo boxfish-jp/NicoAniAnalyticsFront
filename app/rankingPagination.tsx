@@ -7,7 +7,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import CustomLink from "@/components/link";
+import rankingCardSize from "@/data/rankingCardSize";
 
 const RankingPagination = ({
   previouseOffset,
@@ -24,15 +24,17 @@ const RankingPagination = ({
         <PaginationPrevious href={"/?offset=" + previouseOffset} />
       )}
       <PaginationContent>
-        {Array.from({ length: Math.ceil(numCh / 10) }, (_, i) => i).map((i) => (
-          <PaginationItem key={i}>
-            <PaginationLink
-              href={"/?offset=" + i * 10}
-              isActive={nextOffset / 10 == i + 1}
-            >
-              {i + 1}
-            </PaginationLink>
-          </PaginationItem>
+        {Array.from(
+          { length: Math.ceil(numCh / rankingCardSize) },
+          (_, i) => i
+        ).map((i) => (
+          <PaginationLink
+            key={i}
+            href={"/?offset=" + i * 10}
+            isActive={nextOffset / rankingCardSize == i + 1}
+          >
+            {i + 1}
+          </PaginationLink>
         ))}
       </PaginationContent>
       {numCh > nextOffset && <PaginationNext href={"/?offset=" + nextOffset} />}
