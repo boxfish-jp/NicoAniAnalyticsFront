@@ -24,7 +24,7 @@ const RankingPagination = ({
   switch (type) {
     case "再生数":
       break;
-    case "マイリスト":
+    case "マイリスト数":
       pagetype = "/orderMylists";
       break;
     case "コメント数":
