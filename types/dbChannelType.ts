@@ -6,5 +6,6 @@ type dbChannelType = {
   detail: string;
   thumb: string;
   title: string;
+  videoIds?: string[];
 };
 export default dbChannelType;

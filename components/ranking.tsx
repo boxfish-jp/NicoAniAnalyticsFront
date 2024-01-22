@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/card";
 import dbChannelType from "@/types/dbChannelType";
 import Image from "next/image";
+import CustomLink from "./link";
 
 const Ranking = ({
   type,
@@ -21,44 +22,43 @@ const Ranking = ({
   return (
     <div className="flex flex-col gap-5">
       {channels.map((channel, index) => (
-        <Card
-          className="flex flex-col sm:grid sm:grid-cols-12 items-center p-4"
-          key={index}
-        >
-          <CardContent className="col-span-4 p-3 sm:p-6">
-            <Image
-              src={channel.thumb}
-              alt={channel.title + "のサムネイル"}
-              width={300}
-              height={300}
-            />
-          </CardContent>
-          <CardHeader className="col-span-6 p-3 sm:p-6">
-            <div className="flex flex-row items-center">
-              <div className="bg-black   text-center h-11 leading-10 p-2 w-11 rounded-full">
-                <h1 className="text-white font-medium text-xl">
-                  {Number(index) + offset + 1}
-                </h1>
+        <CustomLink href={detailLink(channel.chUrl)} key={index}>
+          <Card className="flex flex-col sm:grid sm:grid-cols-12 items-center p-4">
+            <CardContent className="col-span-4 p-3 sm:p-6">
+              <Image
+                src={channel.thumb}
+                alt={channel.title + "のサムネイル"}
+                width={300}
+                height={300}
+              />
+            </CardContent>
+            <CardHeader className="col-span-6 p-3 sm:p-6">
+              <div className="flex flex-row items-center">
+                <div className="bg-black   text-center h-11 leading-10 p-2 w-11 rounded-full">
+                  <h1 className="text-white font-medium text-xl">
+                    {Number(index) + offset + 1}
+                  </h1>
+                </div>
+                <CardTitle className="text-lg break-words lg:text-xl leading-11 mx-4 mb-1">
+                  {channel.title.length > 25
+                    ? channel.title.substring(0, 25) + "..."
+                    : channel.title}
+                </CardTitle>
               </div>
-              <CardTitle className="text-lg break-words lg:text-xl leading-11 mx-4 mb-1">
-                {channel.title.length > 25
-                  ? channel.title.substring(0, 25) + "..."
-                  : channel.title}
-              </CardTitle>
-            </div>
-            <Description type={type} channel={channel} />
-            <a
-              href={channel.chUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-500 underline"
-            >
-              {channel.chUrl}
-            </a>
-          </CardHeader>
+              <Description type={type} channel={channel} />
+              <a
+                href={channel.chUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-500 underline"
+              >
+                {channel.chUrl}
+              </a>
+            </CardHeader>
 
-          <Footer type={type} channel={channel} />
-        </Card>
+            <Footer type={type} channel={channel} />
+          </Card>
+        </CustomLink>
       ))}
     </div>
   );
@@ -128,6 +128,10 @@ const Footer = ({
         </div>
       );
   }
+};
+
+const detailLink = (chUrl: string) => {
+  return chUrl.replace("https://ch.nicovideo.jp/", "");
 };
 
 export default Ranking;
