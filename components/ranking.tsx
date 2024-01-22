@@ -23,7 +23,7 @@ const Ranking = ({
     <div className="flex flex-col gap-5">
       {channels.map((channel, index) => (
         <CustomLink href={detailLink(channel.chUrl)} key={index}>
-          <Card className="flex flex-col sm:grid sm:grid-cols-12 items-center p-4">
+          <Card className="flex flex-col sm:grid sm:grid-cols-12 items-center p-4 hover:bg-gray-100">
             <CardContent className="col-span-4 p-3 sm:p-6">
               <Image
                 src={channel.thumb}
