@@ -10,6 +10,7 @@ import BarCharts from "@/components/barCharts";
 import AnimeLists from "@/components/animeList";
 
 const HOME = async ({ params }: { params: { anime: string } }) => {
+  const before = new Date();
   const season = await querySeason();
   const channelInfo = await queryChannel(season, params.anime);
   const upTime = await queryUpTime();
@@ -44,7 +45,8 @@ const HOME = async ({ params }: { params: { anime: string } }) => {
     chartsData.reverse();
     animes.reverse();
   }
-
+  const after = new Date();
+  const time = after.getTime() - before.getTime();
   return (
     <>
       {channelInfo != "notFound" && (
@@ -98,6 +100,7 @@ const HOME = async ({ params }: { params: { anime: string } }) => {
               </section>
             </main>
           </div>
+          <p className="mx-auto w-fit">{time}</p>
         </div>
       )}
     </>
