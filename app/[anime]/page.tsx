@@ -100,13 +100,16 @@ const HOME = async ({ params }: { params: { anime: string } }) => {
                 <BarCharts
                   label="再生数"
                   chartsData={chartsData}
-                  className="col-span-4 h-[350px]"
+                  className="col-span-full xl:col-span-4 h-[350px]"
                 />
-                <AnimeLists animes={animes} className="col-span-3 h-[350px]" />
+                <AnimeLists
+                  animes={animes}
+                  className="col-span-full xl:col-span-3 h-[350px]"
+                />
               </section>
             </main>
           </div>
-          ra
+
           <p className="mx-auto w-fit">{time}</p>
         </div>
       )}
