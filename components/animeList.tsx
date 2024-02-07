@@ -23,7 +23,7 @@ const AnimeLists = ({
           <CardTitle>公開中の話一覧</CardTitle>
           <CardDescription>{`現在${animes.length}話まで公開されています。`}</CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="flex flex-col gap-4">
           {animes.map((anime, id) => (
             <Card key={id}>
               <CardContent className="p-6 pb-0">{anime.title}</CardContent>
