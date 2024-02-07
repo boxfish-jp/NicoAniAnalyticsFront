@@ -34,26 +34,26 @@ const Ranking = ({
             </CardContent>
             <CardHeader className="col-span-6 p-3 sm:p-6">
               <div className="flex flex-row items-center">
-                <div className="bg-black   text-center h-11 leading-10 p-2 w-11 rounded-full">
-                  <h1 className="text-white font-medium text-xl">
-                    {Number(index) + offset + 1}
-                  </h1>
+                <div className="flex flex-row">
+                  <div className="bg-black   text-center h-11 leading-10 p-2 w-11 rounded-full">
+                    <h1 className="text-white font-medium text-xl">
+                      {Number(index) + offset + 1}
+                    </h1>
+                  </div>
+                  <div className="flex flex-col  mx-4 mt-1 gap-4">
+                    <CardTitle className="text-lg break-words lg:text-xl leading-11">
+                      {channel.title.length > 25
+                        ? channel.title.substring(0, 25) + "..."
+                        : channel.title}
+                    </CardTitle>
+                    <Description
+                      type={type}
+                      channel={channel}
+                      className="self-start"
+                    />
+                  </div>
                 </div>
-                <CardTitle className="text-lg break-words lg:text-xl leading-11 mx-4 mb-1">
-                  {channel.title.length > 25
-                    ? channel.title.substring(0, 25) + "..."
-                    : channel.title}
-                </CardTitle>
               </div>
-              <Description type={type} channel={channel} />
-              <a
-                href={channel.chUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-500 underline"
-              >
-                {channel.chUrl}
-              </a>
             </CardHeader>
 
             <Footer type={type} channel={channel} />
@@ -67,14 +67,16 @@ const Ranking = ({
 const Description = ({
   type,
   channel,
+  className,
 }: {
   type: string;
   channel: dbChannelType;
+  className?: string;
 }) => {
   switch (type) {
     case "再生数":
       return (
-        <CardDescription>
+        <CardDescription className={className}>
           コメント数: {channel.aveComments}
           　マイリスト数:
           {channel.aveMylists}

@@ -5,6 +5,7 @@ import querySeason from "@/lib/querySeason";
 import queryChannel from "@/lib/queryChannel";
 import queryUpTime from "@/lib/queryUpTime";
 import queryVideo from "@/lib/queryVideo";
+import AnimeLinks from "@/components/animeLinks";
 import ScoreCard from "@/components/scoreCard";
 import BarCharts from "@/components/barCharts";
 import AnimeLists from "@/components/animeList";
@@ -57,19 +58,24 @@ const HOME = async ({ params }: { params: { anime: string } }) => {
               className="col-span-full md:col-span-10 md:col-start-2 lg:col-span-8 lg:col-start-3 flex flex-col gap-12 mt-5 mb-10"
               id="main"
             >
-              <section className="grid grid-cols-2 gap-8 items-stretch">
-                <div className="mt-auto">
-                  <Image
-                    src={channelInfo.thumb}
-                    width={500}
-                    height={500}
-                    alt={`${channelInfo.title}のサムネイル`}
-                  />
-                </div>
-                <div className="flex flex-col gap-6 h-full items-stretch">
-                  <h1 className=" font-bold text-3xl self-start">
-                    {channelInfo.title}
-                  </h1>
+              <h1 className=" font-bold text-3xl self-start">
+                {channelInfo.title}
+              </h1>
+              <section className="grid grid-cols-6 gap-8 items-stretch">
+                <Image
+                  className="col-span-full lg:col-span-4 xl:col-span-3 mx-auto"
+                  src={channelInfo.thumb}
+                  width={500}
+                  height={500}
+                  alt={`${channelInfo.title}のサムネイル`}
+                />
+                <AnimeLinks
+                  className="col-span-full lg:col-span-2 xl:col-span-3"
+                  channelLink={channelInfo.chUrl}
+                  twitterLink="#"
+                  homePageLink="#"
+                />
+                <div className="col-span-full flex flex-col gap-6 h-full items-stretch">
                   <p className="mt-auto">{channelInfo.detail}</p>
                 </div>
               </section>
@@ -100,6 +106,7 @@ const HOME = async ({ params }: { params: { anime: string } }) => {
               </section>
             </main>
           </div>
+          ra
           <p className="mx-auto w-fit">{time}</p>
         </div>
       )}
