@@ -41,10 +41,8 @@ const Ranking = ({
                     </h1>
                   </div>
                   <div className="flex flex-col  mx-4 mt-1 gap-4">
-                    <CardTitle className="text-lg break-words lg:text-xl leading-11">
-                      {channel.title.length > 25
-                        ? channel.title.substring(0, 25) + "..."
-                        : channel.title}
+                    <CardTitle className="text-lg break-words lg:text-xl leading-11  line-clamp-2">
+                      {channel.title}
                     </CardTitle>
                     <Description
                       type={type}
@@ -55,7 +53,6 @@ const Ranking = ({
                 </div>
               </div>
             </CardHeader>
-
             <Footer type={type} channel={channel} />
           </Card>
         </CustomLink>
