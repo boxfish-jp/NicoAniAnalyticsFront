@@ -6,6 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import dbChannelType from "@/types/dbChannelType";
 import Image from "next/image";
 import CustomLink from "./link";
@@ -32,7 +33,7 @@ const Ranking = ({
                 height={300}
               />
             </CardContent>
-            <CardHeader className="col-span-6 p-3 sm:p-6">
+            <CardHeader className="col-span-6 2xl:col-span-4 p-3 sm:p-6">
               <div className="flex flex-row items-center">
                 <div className="flex flex-row">
                   <div className="bg-black   text-center h-11 leading-10 p-2 w-11 rounded-full">
@@ -44,6 +45,10 @@ const Ranking = ({
                     <CardTitle className="text-lg break-words lg:text-xl leading-11  line-clamp-2">
                       {channel.title}
                     </CardTitle>
+                    <div className="flex gap-2">
+                      {channel.premium && <Badge>プレ限</Badge>}
+                      {channel.latestFree && <Badge>最新話無料</Badge>}
+                    </div>
                     <Description
                       type={type}
                       channel={channel}
