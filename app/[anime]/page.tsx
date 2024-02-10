@@ -9,6 +9,7 @@ import ScoreCard from "@/components/scoreCard";
 import BarCharts from "@/components/barCharts";
 import AnimeLists from "@/components/animeList";
 import ActorCards from "@/components/actorCards";
+import StaffCards from "@/components/staffCards";
 
 const HOME = async ({ params }: { params: { anime: string } }) => {
   const before = new Date();
@@ -108,6 +109,7 @@ const HOME = async ({ params }: { params: { anime: string } }) => {
                 />
               </section>
               <ActorCards casts={channelInfo.casts} />
+              <StaffCards staffs={channelInfo.staffs} />
             </main>
           </div>
 
