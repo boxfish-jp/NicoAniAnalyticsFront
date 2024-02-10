@@ -17,6 +17,12 @@ const queryChannel = async (season: string, Id: string) => {
     thumb: getChannel.data()?.thumb,
     title: getChannel.data()?.title,
     videoIds: getChannel.data()?.videoIds,
+    latestFree: getChannel.data()?.latestFree,
+    premium: getChannel.data()?.premium,
+    site: getChannel.data()?.site,
+    twitter: getChannel.data()?.twitter,
+    casts: getChannel.data()?.casts,
+    staffs: getChannel.data()?.staffs,
   };
   return dbChannel;
 };

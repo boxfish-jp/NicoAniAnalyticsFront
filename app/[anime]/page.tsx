@@ -1,6 +1,5 @@
 import Header from "@/components/header";
 import Image from "next/image";
-import dbVideoType from "@/types/dbVideoType";
 import querySeason from "@/lib/querySeason";
 import queryChannel from "@/lib/queryChannel";
 import queryUpTime from "@/lib/queryUpTime";
@@ -72,8 +71,8 @@ const HOME = async ({ params }: { params: { anime: string } }) => {
                 <AnimeLinks
                   className="col-span-full lg:col-span-2 xl:col-span-3"
                   channelLink={channelInfo.chUrl}
-                  twitterLink="#"
-                  homePageLink="#"
+                  twitterLink={"https://twitter.com/" + channelInfo.twitter}
+                  homePageLink={channelInfo.site}
                 />
                 <div className="col-span-full flex flex-col gap-6 h-full items-stretch">
                   <p className="mt-auto">{channelInfo.detail}</p>
