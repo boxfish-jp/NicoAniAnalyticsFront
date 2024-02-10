@@ -8,6 +8,7 @@ import AnimeLinks from "@/components/animeLinks";
 import ScoreCard from "@/components/scoreCard";
 import BarCharts from "@/components/barCharts";
 import AnimeLists from "@/components/animeList";
+import ActorCards from "@/components/actorCards";
 
 const HOME = async ({ params }: { params: { anime: string } }) => {
   const before = new Date();
@@ -106,6 +107,7 @@ const HOME = async ({ params }: { params: { anime: string } }) => {
                   className="col-span-full xl:col-span-3 h-[350px]"
                 />
               </section>
+              <ActorCards casts={channelInfo.casts} />
             </main>
           </div>
 
