@@ -27,12 +27,16 @@ const ActorCards = ({
       {casts.map((cast, index) => (
         <Card key={index}>
           <CardHeader>
-            <CustomLink
-              href={cast.actorWiki}
-              className="text-bold text-blue-500"
-            >
-              {cast.actor}
-            </CustomLink>
+            {cast.actorWiki != "" ? (
+              <CustomLink
+                href={cast.actorWiki}
+                className="text-bold text-blue-500"
+              >
+                {cast.actor}
+              </CustomLink>
+            ) : (
+              <p className="text-bold">{cast.actor}</p>
+            )}
             <CardDescription>{cast.character}</CardDescription>
           </CardHeader>
         </Card>
