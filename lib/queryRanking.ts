@@ -29,6 +29,13 @@ const queryRanking = async (order: string, offset: number) => {
       detail: doc.data().detail,
       thumb: doc.data().thumb,
       title: doc.data().title,
+      videoIds: doc.data().videoIds,
+      latestFree: doc.data().latestFree,
+      premium: doc.data().premium,
+      site: doc.data().site,
+      twitter: doc.data().twitter,
+      casts: doc.data().casts,
+      staffs: doc.data().staffs,
     });
   });
   return { numCh: numCh, channels: dbChannels.slice(offset) };
