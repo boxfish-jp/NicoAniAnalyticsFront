@@ -7,6 +7,11 @@ const nextConfig = {
         hostname: "anime.nicovideo.jp",
         port: "",
       },
+      {
+        protocol: "https",
+        hostname: "nicovideo.cdn.nimg.jp",
+        port: "",
+      },
     ],
   },
 };

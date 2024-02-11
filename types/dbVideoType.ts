@@ -3,7 +3,7 @@ type dbVideoType = {
   chId: string;
   description: string;
   mylists: number;
-  postDate: Date;
+  postDate: { _seconds: number; _nanoseconds: number };
   thumb: string;
   title: string;
   update: number;

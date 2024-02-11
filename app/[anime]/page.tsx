@@ -39,7 +39,7 @@ const HOME = async ({ params }: { params: { anime: string } }) => {
         });
         animes.push({
           title: title,
-          id: getVideo.chId,
+          id: getVideo.url.replace("https://www.nicovideo.jp/watch/", ""),
           viewers: getVideo.viewers,
         });
       }

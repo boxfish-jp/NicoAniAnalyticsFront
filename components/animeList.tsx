@@ -1,4 +1,3 @@
-import { AnchorHTMLAttributes } from "react";
 import {
   Card,
   CardContent,
@@ -8,6 +7,7 @@ import {
 } from "@/components/ui/card";
 
 import { ScrollArea } from "./ui/scroll-area";
+import CustomLink from "./link";
 
 const AnimeLists = ({
   animes,
@@ -25,12 +25,14 @@ const AnimeLists = ({
         </CardHeader>
         <CardContent className="flex flex-col gap-4">
           {animes.map((anime, id) => (
-            <Card key={id}>
-              <CardContent className="p-6 pb-0">{anime.title}</CardContent>
-              <CardHeader className="pt-3">
-                <CardDescription>{anime.viewers}再生</CardDescription>
-              </CardHeader>
-            </Card>
+            <CustomLink href={`/video/${anime.id}`} key={id}>
+              <Card>
+                <CardContent className="p-6 pb-0">{anime.title}</CardContent>
+                <CardHeader className="pt-3">
+                  <CardDescription>{anime.viewers}再生</CardDescription>
+                </CardHeader>
+              </Card>
+            </CustomLink>
           ))}
         </CardContent>
       </Card>
