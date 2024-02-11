@@ -63,13 +63,15 @@ const HOME = async ({ params }: { params: { anime: string } }) => {
                 {channelInfo.title}
               </h1>
               <section className="grid grid-cols-6 gap-8 items-stretch">
-                <Image
-                  className="col-span-full lg:col-span-4 xl:col-span-3 mx-auto"
-                  src={channelInfo.thumb}
-                  width={500}
-                  height={500}
-                  alt={`${channelInfo.title}のサムネイル`}
-                />
+                <div className="col-span-full lg:col-span-4 xl:col-span-3 flex items-center">
+                  <Image
+                    className="mx-auto"
+                    src={channelInfo.thumb}
+                    width={500}
+                    height={500}
+                    alt={`${channelInfo.title}のサムネイル`}
+                  />
+                </div>
                 <AnimeLinks
                   className="col-span-full lg:col-span-2 xl:col-span-3"
                   links={[
