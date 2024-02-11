@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import BarCharts from "@/components/barCharts";
 import Header from "@/components/header";
 import AnimeLinks from "@/components/animeLinks";
+import BarLineCharts from "@/components/barLineCharts";
 
 const HOME = async ({ params }: { params: { ID: string } }) => {
   const before = new Date();
@@ -34,13 +35,17 @@ const HOME = async ({ params }: { params: { ID: string } }) => {
   viewerData.sort(
     (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
   );
-  const chartsData: { name: string; amt: number }[] = [];
+  const chartsData: { name: string; barY: number; lineY: number }[] = [];
   for (let i = 0; i < viewerData.length; i++) {
     const date = new Date(viewerData[i].date);
     const name = date.getMonth() + 1 + "/" + date.getDate();
     chartsData.push({
       name: name,
-      amt: viewerData[i].viewers,
+      barY:
+        i == 0
+          ? viewerData[i].viewers
+          : viewerData[i].viewers - viewerData[i - 1].viewers,
+      lineY: viewerData[i].viewers,
     });
   }
 
@@ -79,8 +84,9 @@ const HOME = async ({ params }: { params: { ID: string } }) => {
                 <p className="mt-auto">{videos[0].description}</p>
               </CardContent>
             </Card>
-            <BarCharts
-              label="再生数"
+            <BarLineCharts
+              barlabel="日毎の再生数"
+              linelabel="累計再生数"
               chartsData={chartsData}
               className="col-span-full xl:col-span-4 h-[350px]"
             />
