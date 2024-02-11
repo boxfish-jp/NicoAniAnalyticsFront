@@ -21,8 +21,8 @@ const AnimeLinks = ({
   return (
     <Card className={className}>
       <div className="p-6 flex flex-col gap-6">
-        {links.map((link) => (
-          <CustomLink href={link.url} className="flex flex-col gap-0">
+        {links.map((link, i) => (
+          <CustomLink href={link.url} className="flex flex-col gap-0" key={i}>
             <p>{link.key}</p>
             <p className=" text-blue-500 mx-3 break-words">{link.url}</p>
           </CustomLink>
