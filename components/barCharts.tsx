@@ -1,5 +1,5 @@
 "use client";
-import { AnchorHTMLAttributes } from "react";
+import { AnchorHTMLAttributes, useEffect } from "react";
 import {
   BarChart,
   Bar,
@@ -18,13 +18,31 @@ export default function BarCharts({
   ...props
 }: {
   label: string;
-  chartsData: { name: string; amt: number }[];
+  chartsData: { name: string; amt: number; link?: string }[];
 } & AnchorHTMLAttributes<HTMLElement>) {
   // 辞書のamtをlabelに変更
   const data = chartsData.map((item) => ({
     name: item.name,
     [label]: item.amt,
+    link: item.link != undefined ? item.link : "",
   }));
+  const handleBarClick = (data: any, index: any) => {
+    // クリックされた棒のデータを取得して処理する
+    chartsData.forEach((item) => {
+      if (item.name === data.activeLabel) {
+        if (item.link != undefined) {
+          window.open(
+            window.location.protocol +
+              "//" +
+              window.location.host +
+              "/video/" +
+              item.link,
+            "_blank"
+          );
+        }
+      }
+    });
+  };
   return (
     <div {...props}>
       <ResponsiveContainer width="100%" height="100%">
@@ -38,6 +56,7 @@ export default function BarCharts({
             left: 20,
             bottom: 5,
           }}
+          onClick={handleBarClick}
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" />

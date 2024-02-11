@@ -19,7 +19,7 @@ const HOME = async ({ params }: { params: { anime: string } }) => {
   const dateUpTime = new Date(upTime - 1000 * 60 * 60 * 9);
   const dayUptime = dateUpTime.getDate();
   const monthUpTime = dateUpTime.getMonth();
-  let chartsData: { name: string; amt: number }[] = [];
+  let chartsData: { name: string; amt: number; link: string }[] = [];
   let animes: { title: string; id: string; viewers: number }[] = [];
   if (channelInfo != "notFound" && channelInfo.videoIds != undefined) {
     for (let i = 0; i < channelInfo.videoIds.length; i++) {
@@ -36,6 +36,7 @@ const HOME = async ({ params }: { params: { anime: string } }) => {
         chartsData.push({
           name: name,
           amt: getVideo.viewers,
+          link: getVideo.url.replace("https://www.nicovideo.jp/watch/", ""),
         });
         animes.push({
           title: title,
