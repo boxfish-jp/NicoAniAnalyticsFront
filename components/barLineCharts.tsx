@@ -24,12 +24,14 @@ export default function BarLineCharts({
   chartsData: { name: string; barY: number; lineY: number }[];
 } & AnchorHTMLAttributes<HTMLElement>) {
   // 辞書のamtをlabelに変更
-  console.log(chartsData[0].barY / chartsData[1].barY);
-  if (
-    chartsData[0].barY / chartsData[1].barY >= 100 ||
-    chartsData[1].barY == 0
-  ) {
-    chartsData.shift();
+  console.log(chartsData);
+  if (chartsData.length > 1) {
+    if (
+      chartsData[0].barY / chartsData[1].barY >= 100 ||
+      chartsData[1].barY == 0
+    ) {
+      chartsData.shift();
+    }
   }
   const data = chartsData.map((item) => ({
     name: item.name,
