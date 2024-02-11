@@ -26,7 +26,7 @@ const AnimeLists = ({
         <CardContent className="flex flex-col gap-4">
           {animes.map((anime, id) => (
             <CustomLink href={`/video/${anime.id}`} key={id}>
-              <Card>
+              <Card className="hover:bg-gray-100">
                 <CardContent className="p-6 pb-0">{anime.title}</CardContent>
                 <CardHeader className="pt-3">
                   <CardDescription>{anime.viewers}再生</CardDescription>
