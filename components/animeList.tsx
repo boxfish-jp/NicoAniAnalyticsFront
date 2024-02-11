@@ -17,7 +17,7 @@ const AnimeLists = ({
   className: string;
 }) => {
   return (
-    <ScrollArea className={className}>
+    <ScrollArea className={className} type="always">
       <Card>
         <CardHeader>
           <CardTitle>公開中の話一覧</CardTitle>
