@@ -72,9 +72,14 @@ const HOME = async ({ params }: { params: { anime: string } }) => {
                 />
                 <AnimeLinks
                   className="col-span-full lg:col-span-2 xl:col-span-3"
-                  channelLink={channelInfo.chUrl}
-                  twitterLink={"https://twitter.com/" + channelInfo.twitter}
-                  homePageLink={channelInfo.site}
+                  links={[
+                    { key: "ニコニコチャンネル:", url: channelInfo.chUrl },
+                    {
+                      key: "公式Twitter(X):",
+                      url: "https://twitter.com/" + channelInfo.twitter,
+                    },
+                    { key: "公式ホームページ:", url: channelInfo.site },
+                  ]}
                 />
                 <div className="col-span-full flex flex-col gap-6 h-full items-stretch">
                   <p className="mt-auto">{channelInfo.detail}</p>

@@ -9,36 +9,25 @@ import {
 import CustomLink from "./link";
 
 const AnimeLinks = ({
-  channelLink,
-  twitterLink,
-  homePageLink,
+  links,
   className,
 }: {
-  channelLink: string;
-  twitterLink: string;
-  homePageLink: string;
+  links: {
+    key: string;
+    url: string;
+  }[];
   className?: string;
 }) => {
   return (
     <Card className={className}>
-      <CardHeader>
-        <CustomLink href={channelLink} className="flex flex-col gap-0">
-          <p>ニコニコチャンネル:</p>
-          <p className=" text-blue-500 mx-3 break-words">{channelLink}</p>
-        </CustomLink>
-      </CardHeader>
-      <CardContent>
-        <CustomLink href={twitterLink} className="flex flex-col gap-0">
-          <p>公式Twitter(X):</p>
-          <p className=" text-blue-500 mx-3 break-words">{twitterLink}</p>
-        </CustomLink>
-      </CardContent>
-      <CardFooter>
-        <CustomLink href={homePageLink} className="flex flex-col gap-0">
-          <p>公式ホームページ:</p>
-          <p className=" text-blue-500 mx-3  break-words">{homePageLink}</p>
-        </CustomLink>
-      </CardFooter>
+      <div className="p-6 flex flex-col gap-6">
+        {links.map((link) => (
+          <CustomLink href={link.url} className="flex flex-col gap-0">
+            <p>{link.key}</p>
+            <p className=" text-blue-500 mx-3 break-words">{link.url}</p>
+          </CustomLink>
+        ))}
+      </div>
     </Card>
   );
 };
