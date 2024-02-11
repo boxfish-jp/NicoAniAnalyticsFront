@@ -105,15 +105,15 @@ const HOME = async ({ params }: { params: { anime: string } }) => {
                   last={-123}
                 />
               </section>
-              <section className="grid grid-cols-7">
+              <section className="grid grid-cols-7 gap-8">
                 <BarCharts
                   label="再生数"
                   chartsData={chartsData}
-                  className="col-span-full xl:col-span-4 h-[350px]"
+                  className="col-span-full xl:col-span-4 h-[450px]"
                 />
                 <AnimeLists
                   animes={animes}
-                  className="col-span-full xl:col-span-3 h-[350px]"
+                  className="col-span-full xl:col-span-3 h-[450px]"
                 />
               </section>
               <ActorCards casts={channelInfo.casts} />
