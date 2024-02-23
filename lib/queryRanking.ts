@@ -25,6 +25,7 @@ const queryRanking = async (order: string, offset: number) => {
       aveComments: Number(doc.data().aveComments),
       aveMylists: Number(doc.data().aveMylists),
       aveViewers: Number(doc.data().aveViewers),
+      NaniTag: doc.id,
       chUrl: doc.data().chUrl,
       detail: doc.data().detail,
       thumb: doc.data().thumb,

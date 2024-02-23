@@ -2,6 +2,7 @@ type dbChannelType = {
   aveComments: number;
   aveMylists: number;
   aveViewers: number;
+  NaniTag: string;
   chUrl: string;
   detail: string;
   thumb: string;
