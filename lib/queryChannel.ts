@@ -12,6 +12,7 @@ const queryChannel = async (season: string, Id: string) => {
     aveComments: Number(getChannel.data()?.aveComments),
     aveMylists: Number(getChannel.data()?.aveMylists),
     aveViewers: Number(getChannel.data()?.aveViewers),
+    NaniTag: getChannel.id,
     chUrl: getChannel.data()?.chUrl,
     detail: getChannel.data()?.detail,
     thumb: getChannel.data()?.thumb,
