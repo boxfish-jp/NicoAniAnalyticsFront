@@ -8,5 +8,6 @@ type dbVideoType = {
   ch_seq_title: string;
   ch_seq_desc: string;
   ch_seq_thumb: string;
+  ch_seq_posted: Date;
 };
 export default dbVideoType;
