@@ -1,27 +1,15 @@
 type dbChannelType = {
-  aveComments: number;
-  aveMylists: number;
-  aveViewers: number;
-  NaniTag: string;
-  chUrl: string;
-  detail: string;
-  thumb: string;
-  title: string;
-  videoIds?: string[];
-  latestFree: string;
-  premium: string;
-  site: string;
-  twitter: string;
-  casts: {
-    actor: string;
-    actorImg: string;
-    actorWiki: string;
-    character: string;
-    characterImg: string;
-  }[];
-  staffs: {
-    name: string;
-    role: string;
-  }[];
+  chlist_id: number;
+  caddtime: Date;
+  ch_id: number;
+  ch_title: string;
+  ch_url: string;
+  ch_detail: string;
+  ch_LtstFree: number;
+  syear: number;
+  sseason: number;
+  ch_twt: number;
+  ch_site: string;
+  ch_thumb: string;
 };
 export default dbChannelType;

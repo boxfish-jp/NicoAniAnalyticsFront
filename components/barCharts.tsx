@@ -18,7 +18,7 @@ export default function BarCharts({
   ...props
 }: {
   label: string;
-  chartsData: { name: string; amt: number; link?: string }[];
+  chartsData: { name: string; amt: number; link: number }[];
 } & AnchorHTMLAttributes<HTMLElement>) {
   // 辞書のamtをlabelに変更
   const data = chartsData.map((item) => ({

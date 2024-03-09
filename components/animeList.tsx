@@ -13,7 +13,7 @@ const AnimeLists = ({
   animes,
   className,
 }: {
-  animes: { title: string; id: string; viewers: number }[];
+  animes: { title: string; id: number; viewers: number }[];
   className: string;
 }) => {
   return (
