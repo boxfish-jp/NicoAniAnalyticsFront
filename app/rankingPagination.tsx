@@ -23,18 +23,19 @@ const RankingPagination = ({
   let pagetype = "";
   switch (type) {
     case "再生数":
+      pagetype = "/?name=再生数";
       break;
     case "マイリスト数":
-      pagetype = "/orderMylists";
+      pagetype = "/?name=マイリスト数";
       break;
     case "コメント数":
-      pagetype = "/orderComments";
+      pagetype = "/?name=コメント数";
       break;
   }
   return (
     <Pagination>
       {previouseOffset != 0 && (
-        <PaginationPrevious href={pagetype + "/?offset=" + previouseOffset} />
+        <PaginationPrevious href={pagetype + "&offset=" + previouseOffset} />
       )}
       <PaginationContent>
         {Array.from(
@@ -43,7 +44,7 @@ const RankingPagination = ({
         ).map((i) => (
           <PaginationLink
             key={i}
-            href={pagetype + "/?offset=" + i * rankingCardSize}
+            href={pagetype + "&offset=" + i * rankingCardSize}
             isActive={nextOffset / rankingCardSize == i + 1}
           >
             {i + 1}

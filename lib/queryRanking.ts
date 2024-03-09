@@ -1,45 +1,31 @@
-import { db } from "./firebase";
-import dbChannelType from "../types/dbChannelType";
+import { dbEndpoint } from "./dbEndpoint";
+import { dbRankingJointType } from "@/types/dbRankingType";
 import rankingCardSize from "@/data/rankingCardSize";
+import queryChCount from "./queryChCount";
 
 export const revalidate = 60 * 60 * 12; // 24時間
-const queryRanking = async (order: string, offset: number) => {
-  const getSeason = await db.collection("dbConfig").doc("nowSeason").get();
-  const season = getSeason.data()?.data;
-  const numCh = getSeason.data()?.numCh;
-  const seasonChList = `${season}-ChList`;
-  const limitNum =
-    rankingCardSize + offset > Number(numCh)
-      ? Number(numCh)
-      : rankingCardSize + offset;
-
-  const getRanking = await db
-    .collection(seasonChList)
-    .orderBy(order, "desc")
-    .limit(limitNum)
-    .get();
-
-  const dbChannels: dbChannelType[] = [];
-  getRanking.forEach((doc) => {
-    dbChannels.push({
-      aveComments: Number(doc.data().aveComments),
-      aveMylists: Number(doc.data().aveMylists),
-      aveViewers: Number(doc.data().aveViewers),
-      NaniTag: doc.id,
-      chUrl: doc.data().chUrl,
-      detail: doc.data().detail,
-      thumb: doc.data().thumb,
-      title: doc.data().title,
-      videoIds: doc.data().videoIds,
-      latestFree: doc.data().latestFree,
-      premium: doc.data().premium,
-      site: doc.data().site,
-      twitter: doc.data().twitter,
-      casts: doc.data().casts,
-      staffs: doc.data().staffs,
-    });
-  });
-  return { numCh: numCh, channels: dbChannels.slice(offset) };
+const queryRanking = async (
+  order: string,
+  offset: number,
+  syear: number,
+  sseason: number
+) => {
+  const getRankingUrl = new URL(dbEndpoint + "/ranking");
+  const getRankingUrlParams = new URLSearchParams([
+    ["syear", syear.toString()],
+    ["sseason", sseason.toString()],
+    ["raddtime", String(new Date())],
+    ["offset", offset.toString()],
+    ["limit", (offset + rankingCardSize).toString()],
+    ["order", order],
+  ]);
+  getRankingUrl.search = getRankingUrlParams.toString();
+  const rankingData = await fetch(getRankingUrl.href);
+  const rankingJson = (await rankingData.json()) as {
+    result: dbRankingJointType[];
+  };
+  const chAmount = await queryChCount(syear, sseason);
+  return { chAmount: chAmount, channels: rankingJson.result };
 };
 
 export default queryRanking;
