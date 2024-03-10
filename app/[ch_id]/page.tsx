@@ -32,7 +32,7 @@ const HOME = async ({ params }: { params: { ch_id: number } }) => {
     for (let video of videos) {
       const index = viewDataes.findIndex((v) => v.ch_seq_id == video.ch_seq_id);
       chartsData.push({
-        name: video.ch_seq + "話",
+        name: video.ch_seq_title,
         view_amt: viewDataes[index].view_amount,
         comment_amt: viewDataes[index].comment_amount,
         mylist_amt: viewDataes[index].mylist_amount,

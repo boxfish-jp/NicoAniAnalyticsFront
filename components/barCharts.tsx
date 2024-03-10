@@ -59,7 +59,10 @@ export default function BarCharts({
           onClick={handleBarClick}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
+          <XAxis
+            dataKey="name"
+            tickFormatter={(value, index) => "第" + String(index + 1) + "話"}
+          />
           <YAxis />
           <Tooltip />
           <Legend />
