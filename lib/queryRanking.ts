@@ -16,7 +16,7 @@ const queryRanking = async (
     ["sseason", sseason.toString()],
     ["raddtime", String(new Date())],
     ["offset", offset.toString()],
-    ["limit", (offset + rankingCardSize).toString()],
+    ["limit", rankingCardSize.toString()],
     ["order", order],
   ]);
   getRankingUrl.search = getRankingUrlParams.toString();
