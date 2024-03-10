@@ -53,8 +53,8 @@ export default function BarLineCharts({
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" />
-          <YAxis yAxisId="Line" />
-          <YAxis yAxisId="bar" type="number" orientation="right" />
+          <YAxis yAxisId="Line" type="number" orientation="right" />
+          <YAxis yAxisId="bar" />
           <Tooltip />
           <Legend />
           <Bar

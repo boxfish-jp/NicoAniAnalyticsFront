@@ -1,9 +1,8 @@
 import Image from "next/image";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import BarCharts from "@/components/barCharts";
 import Header from "@/components/header";
 import AnimeLinks from "@/components/animeLinks";
-import BarLineCharts from "@/components/barLineCharts";
+import VideoFigureData from "./VideofigureData";
 import queryVideo from "@/lib/queryVideo";
 import queryVidViewData from "@/lib/queryVidViewData";
 
@@ -20,24 +19,29 @@ const HOME = async ({ params }: { params: { ID: number } }) => {
     );
   }
   const viewData = await queryVidViewData(params.ID);
-  const viewerData = viewData.map((v) => ({
-    date: v.daddtime,
-    viewers: v.view_amount,
-  }));
-  viewerData.sort(
-    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+  viewData.sort(
+    (a, b) => new Date(a.daddtime).getTime() - new Date(b.daddtime).getTime()
   );
-  const chartsData: { name: string; barY: number; lineY: number }[] = [];
-  for (let i = 0; i < viewerData.length; i++) {
-    const date = new Date(viewerData[i].date);
+  const chartsData: {
+    name: string;
+    view_amount: number;
+    comment_amount: number;
+    mylist_amount: number;
+    diff_view: number;
+    diff_comment: number;
+    diff_mylist: number;
+  }[] = [];
+  for (let view of viewData) {
+    const date = new Date(view.daddtime);
     const name = date.getMonth() + 1 + "/" + date.getDate();
     chartsData.push({
       name: name,
-      barY:
-        i == 0
-          ? viewerData[i].viewers
-          : viewerData[i].viewers - viewerData[i - 1].viewers,
-      lineY: viewerData[i].viewers,
+      view_amount: view.view_amount,
+      comment_amount: view.comment_amount,
+      mylist_amount: view.mylist_amount,
+      diff_view: view.diff_view,
+      diff_comment: view.diff_comment,
+      diff_mylist: view.diff_mylist,
     });
   }
 
@@ -81,13 +85,11 @@ const HOME = async ({ params }: { params: { ID: number } }) => {
                 <p className="mt-auto">{video.ch_seq_desc}</p>
               </CardContent>
             </Card>
-            <BarLineCharts
-              barlabel="日毎の再生数"
-              linelabel="累計再生数"
-              chartsData={chartsData}
-              className="col-span-full xl:col-span-4 h-[350px]"
-            />
           </section>
+          <VideoFigureData
+            className="col-span-full md:col-span-6"
+            chartsData={chartsData}
+          />
         </main>
       </div>
     </div>
