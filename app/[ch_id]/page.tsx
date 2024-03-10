@@ -22,18 +22,16 @@ const HOME = async ({ params }: { params: { ch_id: number } }) => {
   const rank = await queryChRank(params.ch_id);
   if (videos.length > 0) {
     const viewDataes = await queryViewData(params.ch_id, videos.length);
-    for (let i = 0; i < videos.length; i++) {
-      const index = viewDataes.findIndex(
-        (v) => v.ch_seq_id === viewDataes[i].ch_seq_id
-      );
+    for (let video of videos) {
+      const index = viewDataes.findIndex((v) => v.ch_seq_id == video.ch_seq_id);
       chartsData.push({
-        name: videos[i].ch_seq + "話",
+        name: video.ch_seq + "話",
         amt: viewDataes[index].view_amount,
-        link: videos[i].ch_seq_id,
+        link: video.ch_seq_id,
       });
       animes.push({
-        title: videos[i].ch_seq_title,
-        id: videos[i].ch_seq_id,
+        title: video.ch_seq_title,
+        id: video.ch_seq_id,
         viewers: viewDataes[index].view_amount,
       });
     }
