@@ -1,3 +1,4 @@
+import { HTMLAttributes } from "react";
 import {
   Card,
   CardContent,
@@ -15,7 +16,7 @@ const ScoreCard = ({
   label: string;
   num: number;
   last: number;
-}) => {
+} & HTMLAttributes<HTMLDivElement>) => {
   let description = "";
   if (last > 0) {
     description = `前日比 +${last}`;

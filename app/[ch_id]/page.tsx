@@ -6,6 +6,7 @@ import AnimeLinks from "@/components/animeLinks";
 import ScoreCard from "@/components/scoreCard";
 import BarCharts from "@/components/barCharts";
 import AnimeLists from "@/components/animeList";
+import FigureData from "./figureData";
 //import ActorCards from "@/components/actorCards";
 //import StaffCards from "@/components/staffCards";
 import queryViewData from "@/lib/queryViewData";
@@ -16,7 +17,13 @@ export const runtime = "edge";
 const HOME = async ({ params }: { params: { ch_id: number } }) => {
   const before = new Date();
   const channelInfo = await queryChannel(params.ch_id);
-  let chartsData: { name: string; amt: number; link: number }[] = [];
+  let chartsData: {
+    name: string;
+    view_amt: number;
+    comment_amt: number;
+    mylist_amt: number;
+    link: number;
+  }[] = [];
   let animes: { title: string; id: number; viewers: number }[] = [];
   const videos = await queryVideos(params.ch_id);
   const rank = await queryChRank(params.ch_id);
@@ -26,7 +33,9 @@ const HOME = async ({ params }: { params: { ch_id: number } }) => {
       const index = viewDataes.findIndex((v) => v.ch_seq_id == video.ch_seq_id);
       chartsData.push({
         name: video.ch_seq + "話",
-        amt: viewDataes[index].view_amount,
+        view_amt: viewDataes[index].view_amount,
+        comment_amt: viewDataes[index].comment_amount,
+        mylist_amt: viewDataes[index].mylist_amount,
         link: video.ch_seq_id,
       });
       animes.push({
@@ -74,34 +83,7 @@ const HOME = async ({ params }: { params: { ch_id: number } }) => {
                   <p className="mt-auto">{channelInfo.ch_detail}</p>
                 </div>
               </section>
-              <section className="grid grid-cols-2 xl:grid-cols-3 gap-8">
-                <ScoreCard
-                  label="平均再生数"
-                  num={rank.r_ave_view}
-                  last={rank.r_diff_view}
-                />
-                <ScoreCard
-                  label="平均コメント数"
-                  num={rank.r_ave_comment}
-                  last={rank.r_diff_comment}
-                />
-                <ScoreCard
-                  label="平均マイリスト数"
-                  num={rank.r_ave_mylist}
-                  last={rank.r_diff_mylist}
-                />
-              </section>
-              <section className="grid grid-cols-7 gap-8">
-                <BarCharts
-                  label="再生数"
-                  chartsData={chartsData}
-                  className="col-span-full xl:col-span-4 h-[450px]"
-                />
-                <AnimeLists
-                  animes={animes}
-                  className="col-span-full xl:col-span-3 h-[450px]"
-                />
-              </section>
+              <FigureData rank={rank} chartsData={chartsData} animes={animes} />
               {/*<ActorCards casts={channelInfo.casts} />
               <StaffCards staffs={channelInfo.staffs} />*/}
             </main>
