@@ -12,17 +12,26 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+const searchSeq = (
+  data: { name: string; seq: number; amt: number; link: number }[],
+  value: string
+) => {
+  const result = data.find((item) => item.name === value);
+  return result != undefined ? result.seq : "";
+};
+
 export default function BarCharts({
   label,
   chartsData,
   ...props
 }: {
   label: string;
-  chartsData: { name: string; amt: number; link: number }[];
+  chartsData: { name: string; seq: number; amt: number; link: number }[];
 } & AnchorHTMLAttributes<HTMLElement>) {
   // 辞書のamtをlabelに変更
   const data = chartsData.map((item) => ({
     name: item.name,
+    seq: item.seq,
     [label]: item.amt,
     link: item.link != undefined ? item.link : "",
   }));
@@ -61,7 +70,9 @@ export default function BarCharts({
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis
             dataKey="name"
-            tickFormatter={(value, index) => "第" + String(index + 1) + "話"}
+            tickFormatter={(value, index) =>
+              "第" + String(searchSeq(chartsData, value)) + "話"
+            }
           />
           <YAxis />
           <Tooltip />

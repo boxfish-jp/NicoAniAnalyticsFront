@@ -19,6 +19,7 @@ const HOME = async ({ params }: { params: { ch_id: number } }) => {
   const channelInfo = await queryChannel(params.ch_id);
   let chartsData: {
     name: string;
+    seq: number;
     view_amt: number;
     comment_amt: number;
     mylist_amt: number;
@@ -33,6 +34,7 @@ const HOME = async ({ params }: { params: { ch_id: number } }) => {
       const index = viewDataes.findIndex((v) => v.ch_seq_id == video.ch_seq_id);
       chartsData.push({
         name: video.ch_seq_title,
+        seq: video.ch_seq,
         view_amt: viewDataes[index].view_amount,
         comment_amt: viewDataes[index].comment_amount,
         mylist_amt: viewDataes[index].mylist_amount,

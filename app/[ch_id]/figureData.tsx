@@ -13,6 +13,7 @@ const FigureData = ({
   rank: dbRankingType;
   chartsData: {
     name: string;
+    seq: number;
     view_amt: number;
     comment_amt: number;
     mylist_amt: number;
@@ -20,11 +21,11 @@ const FigureData = ({
   }[];
   animes: { title: string; id: number; viewers: number }[];
 }) => {
-  console.log(chartsData);
   const [order, setOrder] = useState("再生数");
   const [charts, setCharts] = useState(
     chartsData.map((data) => ({
       name: data.name,
+      seq: data.seq,
       amt: data.view_amt,
       link: data.link,
     }))
@@ -36,6 +37,7 @@ const FigureData = ({
         setCharts(
           chartsData.map((data) => ({
             name: data.name,
+            seq: data.seq,
             amt: data.view_amt,
             link: data.link,
           }))
@@ -45,6 +47,7 @@ const FigureData = ({
         setCharts(
           chartsData.map((data) => ({
             name: data.name,
+            seq: data.seq,
             amt: data.comment_amt,
             link: data.link,
           }))
@@ -54,6 +57,7 @@ const FigureData = ({
         setCharts(
           chartsData.map((data) => ({
             name: data.name,
+            seq: data.seq,
             amt: data.mylist_amt,
             link: data.link,
           }))
