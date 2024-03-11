@@ -58,6 +58,10 @@ const HOME = async ({ params }: { params: { ID: number } }) => {
             {video.ch_seq_title}
           </h1>
           <section className="grid grid-cols-6 gap-8 items-stretch">
+            <VideoFigureData
+              className="col-span-full md:col-span-6"
+              chartsData={chartsData}
+            />
             <div className="col-span-full md:col-span-2 flex items-center w-full">
               <Image
                 className="w-full"
@@ -86,10 +90,6 @@ const HOME = async ({ params }: { params: { ID: number } }) => {
               </CardContent>
             </Card>
           </section>
-          <VideoFigureData
-            className="col-span-full md:col-span-6"
-            chartsData={chartsData}
-          />
         </main>
       </div>
     </div>

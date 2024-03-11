@@ -61,6 +61,14 @@ const VideoFigureData = ({
 
   return (
     <div className={className + " flex flex-col gap-12"}>
+      <section className="w-full mx-auto">
+        <BarLineCharts
+          barlabel={"日毎の" + order}
+          linelabel={"累計" + order}
+          chartsData={charts}
+          className="col-span-full xl:col-span-4 h-[350px] w-full px-auto"
+        />
+      </section>
       <section className="grid grid-cols-2 xl:grid-cols-3 gap-8">
         <div onClick={() => setOrder("再生数")}>
           <ScoreCard
@@ -83,14 +91,6 @@ const VideoFigureData = ({
             last={0}
           />
         </div>
-      </section>
-      <section className="w-full mx-auto">
-        <BarLineCharts
-          barlabel={"日毎の" + order}
-          linelabel={"累計" + order}
-          chartsData={charts}
-          className="col-span-full xl:col-span-4 h-[350px] w-full px-auto"
-        />
       </section>
     </div>
   );
