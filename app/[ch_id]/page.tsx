@@ -60,7 +60,8 @@ const HOME = async ({ params }: { params: { ch_id: number } }) => {
               <h1 className=" font-bold text-3xl self-start">
                 {channelInfo.ch_title}
               </h1>
-              <section className="grid grid-cols-6 gap-8 items-stretch">
+              <FigureData rank={rank} chartsData={chartsData} animes={animes} />
+              <section className="grid grid-cols-6 gap-14 items-stretch">
                 <div className="col-span-full lg:col-span-4 xl:col-span-3 flex items-center">
                   <Image
                     className="mx-auto"
@@ -81,11 +82,15 @@ const HOME = async ({ params }: { params: { ch_id: number } }) => {
                     { key: "公式ホームページ:", url: channelInfo.ch_site },
                   ]}
                 />
-                <div className="col-span-full flex flex-col gap-6 h-full items-stretch">
-                  <p className="mt-auto">{channelInfo.ch_detail}</p>
+                <div className="col-span-full grid grid-cols-12 gap-12 h-auto justify-center">
+                  <p className="col-span-full md:col-span-6">
+                    {channelInfo.ch_detail}
+                  </p>
+                  <div className="col-span-full md:col-span-6 md:ms-auto">
+                    <AnimeLists className="h-[250px]" animes={animes} />
+                  </div>
                 </div>
               </section>
-              <FigureData rank={rank} chartsData={chartsData} animes={animes} />
               {/*<ActorCards casts={channelInfo.casts} />
               <StaffCards staffs={channelInfo.staffs} />*/}
             </main>

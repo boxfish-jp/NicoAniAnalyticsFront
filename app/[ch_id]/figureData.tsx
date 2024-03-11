@@ -68,6 +68,11 @@ const FigureData = ({
 
   return (
     <>
+      <BarCharts
+        label={order}
+        chartsData={charts}
+        className="col-span-full xl:col-span-4 h-[450px]"
+      />
       <section className="grid grid-cols-2 xl:grid-cols-3 gap-8">
         <div onClick={() => setOrder("再生数")}>
           <ScoreCard
@@ -90,17 +95,6 @@ const FigureData = ({
             last={rank.r_diff_mylist}
           />
         </div>
-      </section>
-      <section className="grid grid-cols-7 gap-8">
-        <BarCharts
-          label={order}
-          chartsData={charts}
-          className="col-span-full xl:col-span-4 h-[450px]"
-        />
-        <AnimeLists
-          animes={animes}
-          className="col-span-full xl:col-span-3 h-[450px]"
-        />
       </section>
     </>
   );
