@@ -15,7 +15,6 @@ import queryChRank from "@/lib/queryChRank";
 export const runtime = "edge";
 
 const HOME = async ({ params }: { params: { ch_id: number } }) => {
-  const before = new Date();
   const channelInfo = await queryChannel(params.ch_id);
   let chartsData: {
     name: string;
@@ -46,8 +45,6 @@ const HOME = async ({ params }: { params: { ch_id: number } }) => {
         viewers: viewDataes[index].view_amount,
       });
     }
-    const after = new Date();
-    const time = after.getTime() - before.getTime();
     return (
       <>
         <div>
@@ -95,8 +92,6 @@ const HOME = async ({ params }: { params: { ch_id: number } }) => {
               <StaffCards staffs={channelInfo.staffs} />*/}
             </main>
           </div>
-
-          <p className="mx-auto w-fit">{time}</p>
         </div>
       </>
     );
