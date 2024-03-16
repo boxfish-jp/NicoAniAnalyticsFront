@@ -84,6 +84,11 @@ export default function BarCharts({
           />
         </BarChart>
       </ResponsiveContainer>
+      <div className="flex">
+        <p className="ms-auto mt-0 text-gray-400">
+          ※棒グラフをクリックすると各話の詳細情報をご確認できます。
+        </p>
+      </div>
     </div>
   );
 }

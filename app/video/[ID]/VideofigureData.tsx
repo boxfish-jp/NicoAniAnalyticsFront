@@ -75,6 +75,7 @@ const VideoFigureData = ({
             label="再生数"
             num={chartsData[chartsData.length - 1].view_amount}
             last={0}
+            className="hover:bg-gray-100"
           />
         </div>
         <div onClick={() => setOrder("コメント数")}>
@@ -82,6 +83,7 @@ const VideoFigureData = ({
             label="コメント数"
             num={chartsData[chartsData.length - 1].comment_amount}
             last={0}
+            className="hover:bg-gray-100"
           />
         </div>
         <div onClick={() => setOrder("マイリスト数")}>
@@ -89,6 +91,7 @@ const VideoFigureData = ({
             label="マイリスト数"
             num={chartsData[chartsData.length - 1].comment_amount}
             last={0}
+            className="text-sm text-muted-foreground"
           />
         </div>
       </section>

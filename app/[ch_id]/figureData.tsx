@@ -79,6 +79,7 @@ const FigureData = ({
             label="平均再生数"
             num={rank.r_ave_view}
             last={rank.r_diff_view}
+            className="hover:bg-gray-100"
           />
         </div>
         <div onClick={() => setOrder("コメント数")}>
@@ -86,6 +87,7 @@ const FigureData = ({
             label="平均コメント数"
             num={rank.r_ave_comment}
             last={rank.r_diff_comment}
+            className="hover:bg-gray-100"
           />
         </div>
         <div onClick={() => setOrder("マイリスト数")}>
@@ -93,6 +95,7 @@ const FigureData = ({
             label="平均マイリスト数"
             num={rank.r_ave_mylist}
             last={rank.r_diff_mylist}
+            className="hover:bg-gray-100"
           />
         </div>
       </section>
