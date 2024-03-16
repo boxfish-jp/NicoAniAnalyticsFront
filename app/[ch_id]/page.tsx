@@ -3,8 +3,6 @@ import Image from "next/image";
 import queryChannel from "@/lib/queryChannel";
 import queryVideos from "@/lib/queryVideos";
 import AnimeLinks from "@/components/animeLinks";
-import ScoreCard from "@/components/scoreCard";
-import BarCharts from "@/components/barCharts";
 import AnimeLists from "@/components/animeList";
 import FigureData from "./figureData";
 //import ActorCards from "@/components/actorCards";

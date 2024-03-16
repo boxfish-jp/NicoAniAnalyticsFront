@@ -1,7 +1,6 @@
 "use client";
 import ScoreCard from "@/components/scoreCard";
 import BarCharts from "@/components/barCharts";
-import AnimeLists from "@/components/animeList";
 import { dbRankingType } from "@/types/dbRankingType";
 import { useEffect, useState } from "react";
 

@@ -1,7 +1,6 @@
 import Ranking from "@/components/ranking";
 import ButtonLists from "@/components/buttonLists";
 import queryRanking from "@/lib/queryRanking";
-import CustomLink from "@/components/link";
 import RankingPagination from "./rankingPagination";
 import rankingCardSize from "@/data/rankingCardSize";
 import { queryLatestSeason } from "@/lib/querySeason";

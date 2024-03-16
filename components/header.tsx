@@ -1,4 +1,3 @@
-import Image from "next/image";
 import MobileNav from "./mobileNav";
 import Link from "./link";
 import headerNavLinks from "@/data/headerNavLinks";
