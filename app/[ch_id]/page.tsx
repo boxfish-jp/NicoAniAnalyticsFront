@@ -96,13 +96,14 @@ const HOME = async ({ params }: { params: { ch_id: number } }) => {
                     },
                   ]}
                 />
-                <div className="col-span-full grid grid-cols-12 gap-12 h-auto justify-center">
+                <div className="col-span-full grid grid-cols-12 gap-12 h-auto justify-center items-start relative">
                   <p className="col-span-full md:col-span-6">
                     {channelInfo.ch_detail}
                   </p>
-                  <div className="col-span-full md:col-span-6 md:ms-auto">
-                    <AnimeLists className="h-[250px]" animes={animes} />
-                  </div>
+                  <AnimeLists
+                    className="md:!absolute md:top-0 md:bottom-0 md:left-[53%] md:right-0 col-span-full md:col-span-6"
+                    animes={animes}
+                  />
                 </div>
               </section>
               {/*<ActorCards casts={channelInfo.casts} />
