@@ -11,8 +11,6 @@ import queryViewData from "@/lib/queryViewData";
 import queryChRank from "@/lib/queryChRank";
 import dbAllChannel from "@/lib/dbAllChannel";
 
-export const runtime = "edge";
-
 export const metadata = {
   title: "各チャンネルの視聴データの推移",
   description: "各チャンネルの視聴データの推移をグラフで表示します。",

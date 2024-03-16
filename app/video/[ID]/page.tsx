@@ -7,12 +7,15 @@ import queryVideo from "@/lib/queryVideo";
 import queryVidViewData from "@/lib/queryVidViewData";
 import dbAllVideos from "@/lib/dbAllVideos";
 
-export const runtime = "edge";
-
 export const metadata = {
   title: "各動画の視聴データの推移",
   description: "各動画の視聴データの推移をグラフで表示します。",
 };
+
+export async function generateStaticParams() {
+  const videos = await dbAllVideos();
+  return videos.map((video) => ({ ID: String(video.ch_seq_id) }));
+}
 
 const HOME = async ({ params }: { params: { ID: number } }) => {
   const before = new Date();
@@ -103,12 +106,3 @@ const HOME = async ({ params }: { params: { ID: number } }) => {
 };
 
 export default HOME;
-
-export async function generateStaticParams() {
-  const videos = await dbAllVideos();
-  return videos.map((video) => {
-    return {
-      params: { ID: String(video.ch_seq_id) },
-    };
-  });
-}
