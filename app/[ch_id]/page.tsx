@@ -36,6 +36,9 @@ const HOME = async ({ params }: { params: { ch_id: number } }) => {
     const viewDataes = await queryViewData(params.ch_id, videos.length);
     for (let video of videos) {
       const index = viewDataes.findIndex((v) => v.ch_seq_id == video.ch_seq_id);
+      if (index == -1) {
+        continue;
+      }
       chartsData.push({
         name: video.ch_seq_title,
         seq: video.ch_seq,
