@@ -40,14 +40,13 @@ export default function BarCharts({
     chartsData.forEach((item) => {
       if (item.name === data.activeLabel) {
         if (item.link != undefined) {
-          window.open(
+          (window.location.href =
             window.location.protocol +
-              "//" +
-              window.location.host +
-              "/video/" +
-              item.link,
-            "_blank"
-          );
+            "//" +
+            window.location.host +
+            "/video/" +
+            item.link),
+            "_blank";
         }
       }
     });
