@@ -42,7 +42,8 @@ const HOME = async ({ params }: { params: { ID: number } }) => {
     diff_comment: number;
     diff_mylist: number;
   }[] = [];
-  for (let view of viewData) {
+  for (let i = 0; i < viewData.length - 1; i++) {
+    const view = viewData[i];
     const date = new Date(view.daddtime);
     const name = date.getMonth() + 1 + "/" + date.getDate();
     chartsData.push({
@@ -50,9 +51,18 @@ const HOME = async ({ params }: { params: { ID: number } }) => {
       view_amount: view.view_amount,
       comment_amount: view.comment_amount,
       mylist_amount: view.mylist_amount,
-      diff_view: view.diff_view,
-      diff_comment: view.diff_comment,
-      diff_mylist: view.diff_mylist,
+      diff_view:
+        i != 0
+          ? view.view_amount - viewData[i - 1].view_amount
+          : view.view_amount,
+      diff_comment:
+        i != 0
+          ? view.comment_amount - viewData[i - 1].comment_amount
+          : view.comment_amount,
+      diff_mylist:
+        i != 0
+          ? view.mylist_amount - viewData[i - 1].mylist_amount
+          : view.mylist_amount,
     });
   }
 
