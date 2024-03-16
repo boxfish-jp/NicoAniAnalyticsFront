@@ -7,6 +7,8 @@ import queryVideo from "@/lib/queryVideo";
 import queryVidViewData from "@/lib/queryVidViewData";
 import dbAllVideos from "@/lib/dbAllVideos";
 
+export const dynamicParams = false;
+
 export const metadata = {
   title: "各動画の視聴データの推移",
   description: "各動画の視聴データの推移をグラフで表示します。",
