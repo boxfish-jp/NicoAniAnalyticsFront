@@ -9,6 +9,7 @@ import FigureData from "./figureData";
 //import StaffCards from "@/components/staffCards";
 import queryViewData from "@/lib/queryViewData";
 import queryChRank from "@/lib/queryChRank";
+import dbAllChannel from "@/lib/dbAllChannel";
 
 export const runtime = "edge";
 
@@ -116,3 +117,8 @@ const HOME = async ({ params }: { params: { ch_id: number } }) => {
   }
 };
 export default HOME;
+
+export async function generateStaticParams() {
+  const channels = await dbAllChannel();
+  return channels.map((channel) => ({ ch_id: String(channel.ch_id) }));
+}

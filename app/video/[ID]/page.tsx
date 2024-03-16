@@ -5,6 +5,7 @@ import AnimeLinks from "@/components/animeLinks";
 import VideoFigureData from "./VideofigureData";
 import queryVideo from "@/lib/queryVideo";
 import queryVidViewData from "@/lib/queryVidViewData";
+import dbAllVideos from "@/lib/dbAllVideos";
 
 export const runtime = "edge";
 
@@ -102,3 +103,12 @@ const HOME = async ({ params }: { params: { ID: number } }) => {
 };
 
 export default HOME;
+
+export async function generateStaticParams() {
+  const videos = await dbAllVideos();
+  return videos.map((video) => {
+    return {
+      params: { ID: String(video.ch_seq_id) },
+    };
+  });
+}
