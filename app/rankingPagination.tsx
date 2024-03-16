@@ -50,7 +50,7 @@ const RankingPagination = ({
         ))}
       </PaginationContent>
       {numCh > nextOffset && (
-        <PaginationNext href={pagetype + "/?offset=" + nextOffset} />
+        <PaginationNext href={pagetype + "&offset=" + nextOffset} />
       )}
     </Pagination>
   );
