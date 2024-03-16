@@ -14,6 +14,11 @@ import queryChRank from "@/lib/queryChRank";
 
 export const runtime = "edge";
 
+export const metadata = {
+  title: "各チャンネルの視聴データの推移",
+  description: "各チャンネルの視聴データの推移をグラフで表示します。",
+};
+
 const HOME = async ({ params }: { params: { ch_id: number } }) => {
   const channelInfo = await queryChannel(params.ch_id);
   let chartsData: {
@@ -74,9 +79,18 @@ const HOME = async ({ params }: { params: { ch_id: number } }) => {
                     { key: "ニコニコチャンネル:", url: channelInfo.ch_url },
                     {
                       key: "公式Twitter(X):",
-                      url: "https://twitter.com/" + channelInfo.ch_twt,
+                      url:
+                        channelInfo.ch_twt != "undefined"
+                          ? "https://twitter.com/" + channelInfo.ch_twt
+                          : "",
                     },
-                    { key: "公式ホームページ:", url: channelInfo.ch_site },
+                    {
+                      key: "公式ホームページ:",
+                      url:
+                        channelInfo.ch_site != "undefined"
+                          ? channelInfo.ch_site
+                          : "",
+                    },
                   ]}
                 />
                 <div className="col-span-full grid grid-cols-12 gap-12 h-auto justify-center">

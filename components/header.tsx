@@ -9,7 +9,7 @@ export default function Header() {
       <div className="container mx-auto  pb-1 text-white">
         <div className="mx-7 flex items-center justify-between">
           <Link className="flex items-center gap-3" href="/">
-            <p className="text-2xl font-semibold">ニコニコアニメトラッカー</p>
+            <p className="text-2xl font-semibold">あにめーに</p>
           </Link>
           <div className="hidden md:block">
             <div className="flex gap-8">

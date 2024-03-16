@@ -8,6 +8,11 @@ import queryVidViewData from "@/lib/queryVidViewData";
 
 export const runtime = "edge";
 
+export const metadata = {
+  title: "各動画の視聴データの推移",
+  description: "各動画の視聴データの推移をグラフで表示します。",
+};
+
 const HOME = async ({ params }: { params: { ID: number } }) => {
   const before = new Date();
   const video = await queryVideo(params.ID);

@@ -8,7 +8,7 @@ type dbChannelType = {
   ch_LtstFree: number;
   syear: number;
   sseason: number;
-  ch_twt: number;
+  ch_twt: string;
   ch_site: string;
   ch_thumb: string;
 };
