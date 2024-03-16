@@ -10,8 +10,6 @@ const noto = Noto_Sans_JP({
   variable: "--font-noto",
 });
 
-export const runtime = "edge";
-
 export const metadata: Metadata = {
   metadataBase: new URL(siteMetadata.siteUrl),
   title: {
