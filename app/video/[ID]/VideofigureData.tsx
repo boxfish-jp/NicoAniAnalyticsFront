@@ -7,7 +7,7 @@ const VideoFigureData = ({
   className,
   chartsData,
 }: {
-  className: string;
+  className?: string;
   chartsData: {
     name: string;
     view_amount: number;
@@ -58,6 +58,14 @@ const VideoFigureData = ({
         break;
     }
   }, [order]);
+
+  if (chartsData.length == 0) {
+    return (
+      <div className={className}>
+        <p>データがありません</p>
+      </div>
+    );
+  }
 
   return (
     <div className={className + " flex flex-col gap-12"}>

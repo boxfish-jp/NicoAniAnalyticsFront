@@ -42,7 +42,7 @@ const HOME = async ({ params }: { params: { ID: number } }) => {
     diff_comment: number;
     diff_mylist: number;
   }[] = [];
-  for (let i = 0; i < viewData.length - 1; i++) {
+  for (let i = 0; i < viewData.length; i++) {
     const view = viewData[i];
     const date = new Date(view.daddtime);
     const name = date.getMonth() + 1 + "/" + date.getDate();
