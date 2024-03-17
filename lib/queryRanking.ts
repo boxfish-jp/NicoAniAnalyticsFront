@@ -1,4 +1,5 @@
 import { dbEndpoint } from "./dbEndpoint";
+import dbFetcher from "./dbFetcher";
 import { dbRankingJointType } from "@/types/dbRankingType";
 import rankingCardSize from "@/data/rankingCardSize";
 import queryChCount from "./queryChCount";
@@ -14,13 +15,13 @@ const queryRanking = async (
   const getRankingUrlParams = new URLSearchParams([
     ["syear", syear.toString()],
     ["sseason", sseason.toString()],
-    ["raddtime", String(new Date())],
+    ["raddtime", new Date().toLocaleString("sv-SE", { timeZone: "UTC" })],
     ["offset", offset.toString()],
     ["limit", rankingCardSize.toString()],
     ["order", order],
   ]);
   getRankingUrl.search = getRankingUrlParams.toString();
-  const rankingData = await fetch(getRankingUrl.href);
+  const rankingData = await dbFetcher(getRankingUrl.href);
   const rankingJson = (await rankingData.json()) as {
     result: dbRankingJointType[];
   };

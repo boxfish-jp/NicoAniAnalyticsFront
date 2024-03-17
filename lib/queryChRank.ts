@@ -1,5 +1,6 @@
 import { dbEndpoint } from "./dbEndpoint";
 import { dbRankingType } from "@/types/dbRankingType";
+import dbFetcher from "./dbFetcher";
 
 const queryChRank = async (ch_id: number) => {
   const getRankingUrl = new URL(dbEndpoint + "/ranking");
@@ -8,7 +9,7 @@ const queryChRank = async (ch_id: number) => {
     ["raddtime", String(new Date())],
   ]);
   getRankingUrl.search = getRankingUrlParams.toString();
-  const rankingData = await fetch(getRankingUrl.href);
+  const rankingData = await dbFetcher(getRankingUrl.href);
   const rankingJson = (await rankingData.json()) as {
     result: dbRankingType[];
   };

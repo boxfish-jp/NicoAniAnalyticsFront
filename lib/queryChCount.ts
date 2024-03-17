@@ -1,4 +1,5 @@
 import { dbEndpoint } from "./dbEndpoint";
+import dbFetcher from "./dbFetcher";
 
 const queryChCount = async (syear: number, sseason: number) => {
   const getChCountUrl = new URL(dbEndpoint + "/chlist");
@@ -8,7 +9,7 @@ const queryChCount = async (syear: number, sseason: number) => {
     ["count", "t"],
   ]);
   getChCountUrl.search = getChCountUrlParams.toString();
-  const chCountData = await fetch(getChCountUrl.href);
+  const chCountData = await dbFetcher(getChCountUrl.href);
   const chCountJson = (await chCountData.json()) as {
     result: [
       {
