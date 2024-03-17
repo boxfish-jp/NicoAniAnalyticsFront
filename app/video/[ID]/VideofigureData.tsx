@@ -89,9 +89,9 @@ const VideoFigureData = ({
         <div onClick={() => setOrder("マイリスト数")}>
           <ScoreCard
             label="マイリスト数"
-            num={chartsData[chartsData.length - 1].comment_amount}
+            num={chartsData[chartsData.length - 1].mylist_amount}
             last={0}
-            className="text-sm text-muted-foreground"
+            className="hover:bg-gray-100"
           />
         </div>
       </section>
