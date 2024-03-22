@@ -15,7 +15,7 @@ const queryRanking = async (
   const getRankingUrlParams = new URLSearchParams([
     ["syear", syear.toString()],
     ["sseason", sseason.toString()],
-    ["raddtime", new Date().toLocaleString("sv-SE", { timeZone: "UTC" })],
+    ["raddtime", String(new Date())],
     ["offset", offset.toString()],
     ["limit", rankingCardSize.toString()],
     ["order", order],
