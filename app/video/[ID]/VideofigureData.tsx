@@ -82,6 +82,7 @@ const VideoFigureData = ({
           <ScoreCard
             label="再生数"
             num={chartsData[chartsData.length - 1].view_amount}
+            unit="再生"
             last={0}
             className="hover:bg-gray-100"
           />
@@ -90,6 +91,7 @@ const VideoFigureData = ({
           <ScoreCard
             label="コメント数"
             num={chartsData[chartsData.length - 1].comment_amount}
+            unit="コメ"
             last={0}
             className="hover:bg-gray-100"
           />
@@ -98,6 +100,7 @@ const VideoFigureData = ({
           <ScoreCard
             label="マイリスト数"
             num={chartsData[chartsData.length - 1].mylist_amount}
+            unit="マイリス"
             last={0}
             className="hover:bg-gray-100"
           />

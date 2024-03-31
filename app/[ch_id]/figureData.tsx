@@ -92,6 +92,7 @@ const FigureData = ({
           <ScoreCard
             label="平均再生数"
             num={rank.r_ave_view}
+            unit="再生"
             last={rank.r_diff_view}
             className="hover:bg-gray-100"
           />
@@ -100,6 +101,7 @@ const FigureData = ({
           <ScoreCard
             label="平均コメント数"
             num={rank.r_ave_comment}
+            unit={"コメ"}
             last={rank.r_diff_comment}
             className="hover:bg-gray-100"
           />
@@ -108,6 +110,7 @@ const FigureData = ({
           <ScoreCard
             label="平均マイリスト数"
             num={rank.r_ave_mylist}
+            unit={"マイリス"}
             last={rank.r_diff_mylist}
             className="hover:bg-gray-100"
           />
@@ -116,6 +119,7 @@ const FigureData = ({
           <ScoreCard
             label="再生維持率 (第一話と最新話の再生数比)"
             num={retRate}
+            unit="%"
             last={0}
             className="h-full"
           />

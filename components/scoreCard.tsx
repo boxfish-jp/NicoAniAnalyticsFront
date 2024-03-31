@@ -10,11 +10,13 @@ import {
 const ScoreCard = ({
   label,
   num,
+  unit,
   last,
   ...props
 }: {
   label: string;
   num: number;
+  unit: string;
   last: number;
 } & HTMLAttributes<HTMLDivElement>) => {
   let description = "";
@@ -29,7 +31,10 @@ const ScoreCard = ({
         <p>{label}</p>
       </CardContent>
       <CardHeader className="pt-1">
-        <CardTitle className="text-3xl">{num.toLocaleString()}</CardTitle>
+        <div className="flex gap-2">
+          <CardTitle className="text-3xl">{num.toLocaleString()}</CardTitle>
+          <p className="self-end text-muted-foreground">{unit}</p>
+        </div>
         <CardDescription>{description}</CardDescription>
       </CardHeader>
     </Card>
