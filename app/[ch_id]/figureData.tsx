@@ -3,6 +3,7 @@ import ScoreCard from "@/components/scoreCard";
 import BarCharts from "@/components/barCharts";
 import { dbRankingType } from "@/types/dbRankingType";
 import { useEffect, useState } from "react";
+import dbAllChannel from "@/lib/dbAllChannel";
 
 const FigureData = ({
   rank,
@@ -20,6 +21,20 @@ const FigureData = ({
   }[];
   animes: { title: string; id: number; viewers: number }[];
 }) => {
+  // 再生維持率の導出
+  let retRate: number;
+  if (rank.r_current_seq == 1) {
+    retRate = 100;
+  } else if (rank.r_current_seq == 2) {
+    retRate = (chartsData[1].view_amt / chartsData[0].view_amt) * 100;
+  } else {
+    retRate =
+      ((chartsData[2].view_amt + chartsData[1].view_amt) /
+        2 /
+        chartsData[0].view_amt) *
+      100;
+  }
+  // 再生維持率の導出
   const [order, setOrder] = useState("再生数");
   const [charts, setCharts] = useState(
     chartsData.map((data) => ({
@@ -72,7 +87,7 @@ const FigureData = ({
         chartsData={charts}
         className="col-span-full xl:col-span-4 h-[450px]"
       />
-      <section className="grid grid-cols-2 xl:grid-cols-3 gap-8">
+      <section className="grid grid-cols-2 xl:grid-cols-4 gap-8">
         <div onClick={() => setOrder("再生数")}>
           <ScoreCard
             label="平均再生数"
@@ -95,6 +110,14 @@ const FigureData = ({
             num={rank.r_ave_mylist}
             last={rank.r_diff_mylist}
             className="hover:bg-gray-100"
+          />
+        </div>
+        <div>
+          <ScoreCard
+            label="再生維持率 (第一話と最新話の再生数比)"
+            num={retRate}
+            last={0}
+            className="h-full"
           />
         </div>
       </section>
