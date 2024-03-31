@@ -29,7 +29,7 @@ const ScoreCard = ({
         <p>{label}</p>
       </CardContent>
       <CardHeader className="pt-1">
-        <CardTitle className="text-3xl">{num}</CardTitle>
+        <CardTitle className="text-3xl">{num.toLocaleString()}</CardTitle>
         <CardDescription>{description}</CardDescription>
       </CardHeader>
     </Card>

@@ -80,24 +80,24 @@ const Description = ({
     case "再生数":
       return (
         <CardDescription className={className}>
-          コメント数: {channel.current_r_ave_comment}
+          コメント数: {channel.current_r_ave_comment.toLocaleString()}
           　マイリスト数:
-          {channel.current_r_ave_mylist}
+          {channel.current_r_ave_mylist.toLocaleString()}
         </CardDescription>
       );
     case "コメント数":
       return (
         <CardDescription>
-          再生数: {channel.current_r_ave_view}
+          再生数: {channel.current_r_ave_view.toLocaleString()}
           　マイリスト数:
-          {channel.current_r_ave_mylist}
+          {channel.current_r_ave_mylist.toLocaleString()}
         </CardDescription>
       );
     case "マイリスト数":
       return (
         <CardDescription>
-          再生数: {channel.current_r_ave_view}
-          　コメント数: {channel.current_r_ave_comment}
+          再生数: {channel.current_r_ave_view.toLocaleString()}
+          　コメント数: {channel.current_r_ave_comment.toLocaleString()}
         </CardDescription>
       );
   }
@@ -147,21 +147,27 @@ const Footer = ({
     case "再生数":
       return (
         <div className="col-start-11 col-span-2 flex items-end gap-1">
-          <p className="text-xl">{channel.current_r_ave_view}</p>
+          <p className="text-xl">
+            {channel.current_r_ave_view.toLocaleString()}
+          </p>
           <p className=" text-gray-600 text-sm">再生</p>
         </div>
       );
     case "コメント数":
       return (
         <div className="col-start-11 col-span-2 flex items-end gap-1">
-          <p className="text-xl">{channel.current_r_ave_comment}</p>
+          <p className="text-xl">
+            {channel.current_r_ave_comment.toLocaleString()}
+          </p>
           <p className=" text-gray-600 text-sm">コメ</p>
         </div>
       );
     case "マイリスト数":
       return (
         <div className="col-start-11 col-span-2 flex items-end gap-1">
-          <p className="text-xl">{channel.current_r_ave_mylist}</p>
+          <p className="text-xl">
+            {channel.current_r_ave_mylist.toLocaleString()}
+          </p>
           <p className=" text-gray-600 text-sm">マイリス</p>
         </div>
       );
