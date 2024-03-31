@@ -29,7 +29,8 @@ const FigureData = ({
     retRate = (chartsData[1].view_amt / chartsData[0].view_amt) * 100;
   } else {
     retRate =
-      ((chartsData[2].view_amt + chartsData[1].view_amt) /
+      ((chartsData[chartsData.length - 1].view_amt +
+        chartsData[chartsData.length - 2].view_amt) /
         2 /
         chartsData[0].view_amt) *
       100;
