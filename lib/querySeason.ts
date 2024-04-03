@@ -12,7 +12,7 @@ const queryLatestSeason = async () => {
   let latestSeason = seasonData.result[0];
   for (let season of seasonData.result) {
     if (
-      season.syear > latestSeason.syear &&
+      season.syear > latestSeason.syear ||
       season.sseason > latestSeason.sseason
     ) {
       latestSeason = season;
@@ -20,4 +20,11 @@ const queryLatestSeason = async () => {
   }
   return latestSeason;
 };
-export { queryLatestSeason };
+
+const querySeasons = async () => {
+  const getSeasonURL = new URL(dbEndpoint + "/season");
+  const getSeason = await dbFetcher(getSeasonURL.href);
+  const seasonData = (await getSeason.json()) as { result: dbSeasonType[] };
+  return seasonData.result;
+};
+export { queryLatestSeason, querySeasons };
