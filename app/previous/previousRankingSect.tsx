@@ -13,9 +13,7 @@ const PreviousRankingSection = async ({
 }) => {
   const seasons = await querySeasons();
   const season = seasons[seasons.length - 2];
-  console.log(season);
   const lastUpdate = lastUpdateDay(season.syear, season.sseason);
-  console.log(lastUpdate);
   const queryChannels = await queryOldRanking(
     pageType.query,
     pageType.offset,
@@ -44,9 +42,9 @@ const PreviousRankingSection = async ({
       </p>
       <ButtonLists
         links={[
-          { href: "/", name: "再生数順" },
-          { href: "/?name=マイリスト数", name: "マイリスト数順" },
-          { href: "/?name=コメント数", name: "コメント数順" },
+          { href: "/previous", name: "再生数順" },
+          { href: "/previous?name=マイリスト数", name: "マイリスト数順" },
+          { href: "/previous?name=コメント数", name: "コメント数順" },
         ]}
       />
       <PreviRankingPagination
