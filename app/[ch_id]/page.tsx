@@ -58,14 +58,14 @@ const HOME = async ({ params }: { params: { ch_id: number } }) => {
           <Header />
           <div className="grid grid-cols-12 sm:gap-8">
             <main
-              className="col-span-full md:col-span-10 md:col-start-2 lg:col-span-8 lg:col-start-3 flex flex-col gap-12 mt-5 mb-10"
+              className="col-span-full md:col-span-10 md:col-start-2 lg:col-span-8 lg:col-start-3 flex flex-col gap-12 mt-5 mb-10 mx-4"
               id="main"
             >
               <h1 className=" font-bold text-3xl self-start">
                 {channelInfo.ch_title}
               </h1>
               <FigureData rank={rank} chartsData={chartsData} animes={animes} />
-              <section className="grid grid-cols-6 gap-14 items-stretch">
+              <section className="grid grid-cols-6 gap-2 md:gap-14 items-stretch">
                 <div className="col-span-full lg:col-span-4 xl:col-span-3 flex items-center">
                   <Image
                     className="mx-auto"
@@ -95,7 +95,7 @@ const HOME = async ({ params }: { params: { ch_id: number } }) => {
                     },
                   ]}
                 />
-                <div className="col-span-full grid grid-cols-12 gap-12 h-auto justify-center items-start relative">
+                <div className="col-span-full grid grid-cols-12 sm:gap-3 md:gap-12 h-auto justify-center items-start relative">
                   <p className="col-span-full md:col-span-6">
                     {channelInfo.ch_detail}
                   </p>
