@@ -18,22 +18,30 @@ const PreviRankingPagination = ({
   nextOffset: number;
   numCh: number;
 }) => {
-  let pagetype = "";
+  let params: [string, string][] = [];
   switch (type) {
     case "再生数":
-      pagetype = "/previous?name=再生数";
+      params.push(["name", "再生数"]);
       break;
     case "マイリスト数":
-      pagetype = "/previous?name=マイリスト数";
+      params.push(["name", "マイリスト数"]);
       break;
     case "コメント数":
-      pagetype = "/previous?name=コメント数";
+      params.push(["name", "コメント数"]);
       break;
   }
   return (
     <Pagination>
-      {previouseOffset != 0 && (
-        <PaginationPrevious href={pagetype + "&offset=" + previouseOffset} />
+      {nextOffset - previouseOffset > rankingCardSize && (
+        <PaginationPrevious
+          href={
+            "/previous?" +
+            new URLSearchParams([
+              ...params,
+              ["offset", String(previouseOffset).toString()],
+            ])
+          }
+        />
       )}
       <PaginationContent>
         {Array.from(
@@ -42,7 +50,13 @@ const PreviRankingPagination = ({
         ).map((i) => (
           <PaginationLink
             key={i}
-            href={pagetype + "&offset=" + i * rankingCardSize}
+            href={
+              "/previous?" +
+              new URLSearchParams([
+                ...params,
+                ["offset", String(i * rankingCardSize).toString()],
+              ])
+            }
             isActive={nextOffset / rankingCardSize == i + 1}
           >
             {i + 1}
@@ -50,7 +64,15 @@ const PreviRankingPagination = ({
         ))}
       </PaginationContent>
       {numCh > nextOffset && (
-        <PaginationNext href={pagetype + "&offset=" + nextOffset} />
+        <PaginationNext
+          href={
+            "/previous?" +
+            new URLSearchParams([
+              ...params,
+              ["offset", String(nextOffset).toString()],
+            ])
+          }
+        />
       )}
     </Pagination>
   );
