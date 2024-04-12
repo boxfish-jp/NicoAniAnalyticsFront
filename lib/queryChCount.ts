@@ -1,7 +1,7 @@
 import { dbEndpoint } from "./dbEndpoint";
 import dbFetcher from "./dbFetcher";
 
-export const revalidate = 60 * 60 * 12; // 24時間
+export const revalidate = 0; // 24時間
 const queryChCount = async (syear: number, sseason: number) => {
   const getChCountUrl = new URL(dbEndpoint + "/chlist");
   const getChCountUrlParams = new URLSearchParams([
@@ -10,6 +10,7 @@ const queryChCount = async (syear: number, sseason: number) => {
     ["count", "t"],
   ]);
   getChCountUrl.search = getChCountUrlParams.toString();
+  console.log(getChCountUrl.href);
   const chCountData = await dbFetcher(getChCountUrl.href);
   const chCountJson = (await chCountData.json()) as {
     result: [

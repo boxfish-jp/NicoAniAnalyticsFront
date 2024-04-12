@@ -2,7 +2,7 @@ const dbFetcher = async (url: string) => {
   let errorMes = "";
   for (let i = 0; i < 10; i++) {
     try {
-      const data = await fetch(url);
+      const data = await fetch(url, { cache: "reload" });
       return data;
     } catch (error) {
       errorMes = String("dbAPIError:" + error);
