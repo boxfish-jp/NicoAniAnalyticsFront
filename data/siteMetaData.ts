@@ -9,7 +9,7 @@ const siteMetadata = {
   siteUrl: "https://animeini.com",
   siteRepo: "https://github.com/boxfish-jp/NicoAniAnalyticsFront",
   siteLogo: "/ogp.jfif",
-  socialBanner: "/ogp.jfif",
+  socialBanner: "https://animeini-og.boxfish893.workers.dev/",
   email: "fuguo892@gmail.com",
   github: "https://github.com/boxfish-jp/",
   twitter: "https://twitter.com/boxfish_jp",
