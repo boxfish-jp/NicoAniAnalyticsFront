@@ -10,7 +10,7 @@ const queryChCount = async (syear: number, sseason: number) => {
     ["count", "t"],
   ]);
   getChCountUrl.search = getChCountUrlParams.toString();
-  console.log(getChCountUrl.href);
+  // console.log(getChCountUrl.href);
   const chCountData = await dbFetcher(getChCountUrl.href);
   const chCountJson = (await chCountData.json()) as {
     result: [
