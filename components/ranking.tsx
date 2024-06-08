@@ -20,6 +20,15 @@ const Ranking = ({
   query: string;
 }) => {
   query = "current_" + query;
+  if (channels.length == 0) {
+    return (
+      <div className="flex justify-center items-center h-96">
+        <h3 className="text-lg md:text-3xl">
+          ニコニコからデータを取得できていません。🙇‍♂️
+        </h3>
+      </div>
+    );
+  }
   return (
     <div className="flex flex-col gap-5">
       {channels.map((channel, index) => (
