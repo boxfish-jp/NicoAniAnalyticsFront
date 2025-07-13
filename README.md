@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# NicoAniAnalyticsFront
+ふぐおがサイトの収益化を目指して作ったが、ニコニコがハッキングされたことによってわずか2か月で幕を閉じた、悲しきサイトです。  
+バックエンドもフロントエンドもガッツリある、Webアプリはこれが初であり、基礎を学べたので良しとします。  
 
-## Getting Started
+## 何をやっていた？
+ニコニコで放映されているアニメの再生数、コメント数、マイリスト数を収集し、今ニコニコで一番見られているアニメを確認できるサイトでした。  
+Webサイトはこちら  
+[https://animeini.com/](https://animeini.com/)  
 
-First, run the development server:
+このようにチャンネルごとの平均再生数、コメント数、マイリスト数を基にランキングを作成。  
+<img width="600" height="394" alt="image" src="https://github.com/user-attachments/assets/c0ffa63d-487d-43c6-a06b-8d2a7091da23" />
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+各話の再生数比較や  
+<img width="600" height="354" alt="image" src="https://github.com/user-attachments/assets/6ef02a2b-ab1b-4706-ab41-ebb3ec05aff9" />
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+その動画の日毎の再生数推移などが見れるサイトでした。  
+<img width="600" height="325" alt="image" src="https://github.com/user-attachments/assets/b35ebb96-a0b1-4ef1-8bc2-4e23f775d79d" />
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 悲しい事件
+運用を本格開始した2024年4月から2か月後の6月に、ニコニコがサイバー攻撃を受けて以降、ニコニコ側の仕様が変わってしまいました。  
+それに伴い、ニコニコから情報を取得する仕様がかわってしまい、それ以降対応できておりません。(一応、直したい気持ちはある。)  
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## 構成
+3つのリポジトリからできています。
 
-## Learn More
+### NicoAniAnalytics
+https://github.com/boxfish-jp/NicoAniAnalytics  
+ニコニコから情報を取得してくるプロセス。  
+Firebase Functionsにデプロイしていました。
 
-To learn more about Next.js, take a look at the following resources:
+#### 技術的な小話
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+動画の情報を取得するAPIを使用する予定でしたが、あまりにもニコニコ側に負荷をかけてしまうので、魔法の力を使って取得しています。
+公式APIを使う場合と魔法を使う場合でのニコニコへのリクエスト数の比較は以下の通りです。  
+1シーズンあたりのアニメを放映するチャンネル数を60チャンネル、それぞれ12話アニメを放映するとする。(現実はこれ以上多い。)  
+- 公式APIの場合: 60チャンネル×12話=720リクエスト
+- 魔法の場合: 60チャンネル=60リクエスト
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+12分の1の負荷になっています。また、魔法は10秒に1回のみ発動するようにしており、ニコニコ側への負荷は細心の注意を払っています。  
+さらに、負荷をかけているお詫びとして、私はプレ垢費もかかっています。  
+(ニコニコ側の仕様が変わってしまってからは、停止中です。)
 
-## Deploy on Vercel
+### NicoAniHono
+https://github.com/boxfish-jp/nicoAniHono  
+取得してきた情報を保存しておく、DBのAPIです。  
+DBはCloudflare D1,APIのフレームワークとしてHonoを使用しています。  
+あまりよく分かっておらず作っているため、かなり拙いです。  
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### NicoAniAnalyticsFront
+https://github.com/boxfish-jp/NicoAniAnalyticsFront  
+このリポジトリです。  
+NicoAniHonoからデータを取得してきて、それを表示するフロントエンドです。  
+セキュリティーと軽量さにはこだわっており、ランキングページはSSR、動画ページはSSGで表示します。  
+Next.js, Tailwind CSS, Shadcnを使っています。
