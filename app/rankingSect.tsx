@@ -1,18 +1,24 @@
 import Ranking from "@/components/ranking";
 import ButtonLists from "@/components/buttonLists";
 import queryRanking from "@/lib/queryRanking";
-import CustomLink from "@/components/link";
 import RankingPagination from "./rankingPagination";
 import rankingCardSize from "@/data/rankingCardSize";
+import { queryLatestSeason } from "@/lib/querySeason";
 
 const RankingSection = async ({
   pageType,
 }: {
   pageType: { name: string; query: string; offset: number };
 }) => {
-  const queryChannels = await queryRanking(pageType.query, pageType.offset);
+  const season = await queryLatestSeason();
+  const queryChannels = await queryRanking(
+    pageType.query,
+    pageType.offset,
+    season.syear,
+    season.sseason
+  );
   const dbChannels = queryChannels.channels;
-  const numCh = queryChannels.numCh;
+  const numCh = queryChannels.chAmount;
   const previouseOffset =
     pageType.offset - rankingCardSize > 0
       ? pageType.offset - rankingCardSize
@@ -30,8 +36,8 @@ const RankingSection = async ({
       <ButtonLists
         links={[
           { href: "/", name: "再生数順" },
-          { href: "/orderMylists", name: "マイリスト順" },
-          { href: "/orderComments", name: "コメント数順" },
+          { href: "/?name=マイリスト数", name: "マイリスト数順" },
+          { href: "/?name=コメント数", name: "コメント数順" },
         ]}
       />
       <RankingPagination
@@ -42,8 +48,8 @@ const RankingSection = async ({
       />
       <Ranking
         type={pageType.name}
+        query={pageType.query}
         channels={dbChannels}
-        offset={pageType.offset}
       />
       <RankingPagination
         type={pageType.name}

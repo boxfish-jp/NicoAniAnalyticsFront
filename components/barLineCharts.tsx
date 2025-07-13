@@ -24,14 +24,6 @@ export default function BarLineCharts({
   chartsData: { name: string; barY: number; lineY: number }[];
 } & AnchorHTMLAttributes<HTMLElement>) {
   // 辞書のamtをlabelに変更
-  if (chartsData.length > 1) {
-    if (
-      chartsData[0].barY / chartsData[1].barY >= 100 ||
-      chartsData[1].barY == 0
-    ) {
-      chartsData.shift();
-    }
-  }
   const data = chartsData.map((item) => ({
     name: item.name,
     [barlabel]: item.barY,
@@ -53,8 +45,8 @@ export default function BarLineCharts({
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" />
-          <YAxis yAxisId="Line" />
-          <YAxis yAxisId="bar" type="number" orientation="right" />
+          <YAxis yAxisId="Line" type="number" orientation="right" />
+          <YAxis yAxisId="bar" />
           <Tooltip />
           <Legend />
           <Bar

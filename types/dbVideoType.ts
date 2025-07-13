@@ -1,13 +1,13 @@
 type dbVideoType = {
-  comments: number;
-  chId: string;
-  description: string;
-  mylists: number;
-  postDate: { _seconds: number; _nanoseconds: number };
-  thumb: string;
-  title: string;
-  update: number;
-  url: string;
-  viewers: number;
+  video_id: number;
+  vaddtime: Date;
+  ch_id: number;
+  ch_seq: number;
+  ch_seq_id: number;
+  ch_seq_url: string;
+  ch_seq_title: string;
+  ch_seq_desc: string;
+  ch_seq_thumb: string;
+  ch_seq_posted: Date;
 };
 export default dbVideoType;

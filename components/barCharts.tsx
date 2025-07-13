@@ -12,17 +12,26 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+const searchSeq = (
+  data: { name: string; seq: number; amt: number; link: number }[],
+  value: string
+) => {
+  const result = data.find((item) => item.name === value);
+  return result != undefined ? result.seq : "";
+};
+
 export default function BarCharts({
   label,
   chartsData,
   ...props
 }: {
   label: string;
-  chartsData: { name: string; amt: number; link?: string }[];
+  chartsData: { name: string; seq: number; amt: number; link: number }[];
 } & AnchorHTMLAttributes<HTMLElement>) {
   // 辞書のamtをlabelに変更
   const data = chartsData.map((item) => ({
     name: item.name,
+    seq: item.seq,
     [label]: item.amt,
     link: item.link != undefined ? item.link : "",
   }));
@@ -31,14 +40,13 @@ export default function BarCharts({
     chartsData.forEach((item) => {
       if (item.name === data.activeLabel) {
         if (item.link != undefined) {
-          window.open(
+          (window.location.href =
             window.location.protocol +
-              "//" +
-              window.location.host +
-              "/video/" +
-              item.link,
-            "_blank"
-          );
+            "//" +
+            window.location.host +
+            "/video/" +
+            item.link),
+            "_blank";
         }
       }
     });
@@ -59,7 +67,12 @@ export default function BarCharts({
           onClick={handleBarClick}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
+          <XAxis
+            dataKey="name"
+            tickFormatter={(value, index) =>
+              "第" + String(searchSeq(chartsData, value)) + "話"
+            }
+          />
           <YAxis />
           <Tooltip />
           <Legend />
@@ -70,6 +83,11 @@ export default function BarCharts({
           />
         </BarChart>
       </ResponsiveContainer>
+      <div className="flex">
+        <p className="ms-auto mt-0 text-gray-400">
+          ※棒グラフをクリックすると各話の詳細情報をご確認できます。
+        </p>
+      </div>
     </div>
   );
 }

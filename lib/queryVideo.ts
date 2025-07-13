@@ -1,28 +1,17 @@
-import { db } from "./firebase";
+import { dbEndpoint } from "./dbEndpoint";
 import dbVideoType from "../types/dbVideoType";
-const queryVideo = async (
-  season: string,
-  id: string,
-  mon: number,
-  day: number
-) => {
-  const getVideo = await db.collection(season).doc(`${id}-${mon}-${day}`).get();
-  if (!getVideo.exists) {
+import dbFetcher from "./dbFetcher";
+
+const queryVideo = async (ch_seq_id: number) => {
+  const getVideoUrl = new URL(dbEndpoint + "/videos");
+  const params = { ch_seq_id: String(ch_seq_id) };
+  getVideoUrl.search = new URLSearchParams(params).toString();
+  const res = await dbFetcher(getVideoUrl.toString());
+  const data = (await res.json()) as { result: dbVideoType[] };
+  if (data.result.length == 0) {
     return "notFound";
   }
-  const video: dbVideoType = {
-    chId: getVideo.data()?.chId,
-    comments: Number(getVideo.data()?.NumComment),
-    description: getVideo.data()?.description,
-    mylists: Number(getVideo.data()?.mylist),
-    postDate: getVideo.data()?.postDate,
-    thumb: getVideo.data()?.thumb,
-    title: getVideo.data()?.title,
-    update: Number(getVideo.data()?.update),
-    url: getVideo.data()?.url,
-    viewers: Number(getVideo.data()?.viewer),
-  };
-  return video;
+  return data.result[0];
 };
 
 export default queryVideo;

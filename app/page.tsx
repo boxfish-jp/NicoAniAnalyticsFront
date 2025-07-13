@@ -1,8 +1,28 @@
 import Header from "@/components/header";
 import RankingSection from "./rankingSect";
 
-const Home = (props: { params: {}; searchParams: { offset?: number } }) => {
+export const runtime = "edge";
+
+const Home = (props: {
+  params: {};
+  searchParams: { offset?: number; name?: string };
+}) => {
   const offset = Number(props.searchParams.offset) || 0;
+  const name = props.searchParams.name || "再生数";
+  let query: string;
+  switch (name) {
+    case "再生数":
+      query = "r_ave_view_rank";
+      break;
+    case "コメント数":
+      query = "r_ave_comment_rank";
+      break;
+    case "マイリスト数":
+      query = "r_ave_mylist_rank";
+      break;
+    default:
+      query = "r_ave_view_rank";
+  }
   return (
     <div className="">
       <Header />
@@ -13,7 +33,11 @@ const Home = (props: { params: {}; searchParams: { offset?: number } }) => {
             id="main"
           >
             <RankingSection
-              pageType={{ name: "再生数", query: "aveViewers", offset: offset }}
+              pageType={{
+                name: name,
+                query: query,
+                offset: offset,
+              }}
             />
           </main>
         </div>

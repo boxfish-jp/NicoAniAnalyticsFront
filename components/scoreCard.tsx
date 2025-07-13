@@ -1,3 +1,4 @@
+import { HTMLAttributes } from "react";
 import {
   Card,
   CardContent,
@@ -9,13 +10,15 @@ import {
 const ScoreCard = ({
   label,
   num,
+  unit,
   last,
   ...props
 }: {
   label: string;
   num: number;
+  unit: string;
   last: number;
-}) => {
+} & HTMLAttributes<HTMLDivElement>) => {
   let description = "";
   if (last > 0) {
     description = `前日比 +${last}`;
@@ -28,7 +31,10 @@ const ScoreCard = ({
         <p>{label}</p>
       </CardContent>
       <CardHeader className="pt-1">
-        <CardTitle className="text-3xl">{num}</CardTitle>
+        <div className="flex gap-2">
+          <CardTitle className="text-3xl">{num.toLocaleString()}</CardTitle>
+          <p className="self-end text-muted-foreground">{unit}</p>
+        </div>
         <CardDescription>{description}</CardDescription>
       </CardHeader>
     </Card>
